@@ -21,8 +21,25 @@
 </head>
 <body>
 
+<!-- SIMON SAYS GAME -->
+<div class='col-sm-12 simonsays'>
+  <div class="game-board col-sm-4 col-sm-offset-4">
+    <div class="simon">
+      <ul>
+        <li class="tile red" data-tile="1"></li>
+        <li class="tile blue" data-tile="2"></li>
+        <li class="tile yellow" data-tile="3"></li>
+        <li class="tile green" data-tile="4"></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-
+<div class="game-info">
+<button data-action="start" >Start</button>
+  <h2>Round: <span data-round="0">0</span></h2>
+  <p data-action="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
+</div>
 
 <!-- LOGO FOR START UP PAGE -->
 <div class='col-sm-12'>
@@ -69,25 +86,6 @@
   <input name='password' type='text' class='form-control center-block' id='password-input' placeholder='Password: '>
 </div>
 <!-- LOGIN FORM -->
-
-
-<!-- SIMON SAYS GAME -->
-  <div class="wrapper">
-      <div class="game-board">
-        <div class="simon">
-          <ul>
-            <li class="tile red" data-tile="1"></li>
-            <li class="tile blue" data-tile="2"></li>
-            <li class="tile yellow" data-tile="3"></li>
-            <li class="tile green" data-tile="4"></li>
-          </ul>
-        </div>
-      </div>
-      <div class="game-info">
-        <h2>Round: <span data-round="0">0</span></h2>
-        <button data-action="start" >Start</button>
-        <p data-action="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
-      </div>
   
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

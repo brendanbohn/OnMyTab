@@ -21,7 +21,9 @@ $(document).ready(function(){
 
 	$('#form-login').addClass('hideForm');
 
-	$('.wrapper').addClass('hideForm');
+	$('.simonsays').addClass('hideForm');
+
+	$('.game-info').addClass('hideForm');
 
 	var clicks = 0;
 
@@ -38,7 +40,8 @@ $(document).ready(function(){
 			$('#logo').addClass('shrink');
 			$('#logo').one('webkitAnimationEnd', function() {
 				$('#logo').removeClass().addClass('hideForm');
-				$('.wrapper').removeClass('hideForm').addClass('grow');
+				$('.simonsays').removeClass('hideForm').addClass('grow');
+				$('.game-info').removeClass('hideForm').addClass('fadeIn');
 				Simon.init();
 			});
 		};
