@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	$('#welcome').addClass('fadeIn');
 
-	$('.options').addClass('hideForm');
+	$('.options').addClass('fadeIn');
 
 	$('.one').addClass('photo-login').addClass('background-size-one');
 
@@ -20,9 +20,29 @@ $(document).ready(function(){
 
 	$('#form-login').addClass('hideForm');
 
-	$('#logo').hover(function() {
-		$('.options').removeClass('hideForm').addClass('fadeIn');
+	$('.simon-says-circle').addClass('hideForm');
+
+	var clicks = 0;
+
+
+	$('#welcome').on('click', function() {
+		if ($('#logo').hasClass('photo-logo') && clicks == 1) {
+			$('#logo').addClass('simon-says');
+			$('.options').addClass('hideForm').removeClass('fadeIn');
+			$('#welcome').addClass('hideForm');
+		};
 	});
+
+	$('#logo').on('click', function() {
+		if ($('.options').hasClass('hideForm')) {
+			$('#logo').addClass('shrink');
+			$('#logo').one('webkitAnimationEnd', function() {
+				$('#logo').removeClass().addClass('hideForm');
+				$('.simon-says-circle').removeClass('hideForm').addClass('grow');
+			});
+		};
+	});
+
 
 	$('.one').on('click', function() {
 		if ($('.two').hasClass('photo-logo')) {
@@ -52,6 +72,7 @@ $(document).ready(function(){
 			$('#welcome').removeClass('fadeIn').addClass('hideForm');
 			$('#form-login').removeClass('hideForm').addClass('fadeIn');
 		} else if ($('.one').hasClass('photo-logo')) {
+			clicks++;
 			$('.one').removeClass('photo-logo').addClass('photo-login').removeClass('background-size-three').addClass('background-size-one');
 			$('#logo').removeClass('photo-login').addClass('photo-logo').removeClass('background-size-four').addClass('background-size-logo');
 			$('#welcome').addClass('fadeIn').removeClass('hideForm');
@@ -85,6 +106,7 @@ $(document).ready(function(){
 			$('#signup').removeClass('hideForm').addClass('fadeIn');
 			$('#new-profile-form').addClass('fadeIn').removeClass('hideForm');
 		} else if ($('.two').hasClass('photo-logo')) {
+			clicks++;
 			$('.two').addClass('photo-signup').addClass('background-size-two').removeClass('background-size-three').removeClass('photo-logo');
 			$('#logo').addClass('photo-logo').removeClass('photo-signup').removeClass('background-size-four').addClass('background-size-logo');
 			$('#welcome').addClass('fadeIn').removeClass('hideForm');
@@ -122,6 +144,7 @@ $(document).ready(function(){
 			$('#welcome').removeClass('fadeIn').addClass('hideForm');
 			$('#info').removeClass('hideForm').addClass('fadeIn');
 		} else if ($('.three').hasClass('photo-logo')) {
+			clicks++;
 			$('.three').addClass('photo-info').removeClass('photo-logo');
 			$('.three').addClass('photo-info').removeClass('photo-logo');
 			$('#logo').addClass('photo-logo').removeClass('photo-info').removeClass('background-size-four').addClass('background-size-logo');
