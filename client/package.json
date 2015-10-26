@@ -1,0 +1,32 @@
+{
+  "name": "onmytab",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "dotenv": "^1.2.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "mongoose": "^4.2.0",
+    "nonce": "^1.0.3",
+    "oauth-signature": "^1.3.0",
+    "querystring": "^0.2.0",
+    "request": "^2.65.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isomdurm/OnMyTab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isomdurm/OnMyTab/issues"
+  },
+  "homepage": "https://github.com/isomdurm/OnMyTab#readme",
+  "description": ""
+}

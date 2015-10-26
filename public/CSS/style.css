@@ -1,0 +1,146 @@
+body {
+	background-color: rgb(30,30,30)
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@-webkit-keyframes grow {
+	0%	{ transform: scale(0);	}
+	40%	{ transform: scale(1);	}
+	75%	{ transform: scale(1.1);}
+	100%{ transform: scale(1);	}
+}
+
+@-webkit-keyframes shrink {
+	0%	{ transform: scale(1);	}
+	25%	{ transform: scale(1.1);}
+	55%	{ transform: scale(1);	}
+	100%{ transform: scale(0);	}
+}
+
+.grow {
+	-webkit-animation: grow 3s;
+}
+
+.growcircles {
+	-webkit-animation: grow 1s;
+}
+
+.shrink {
+	-webkit-animation: shrink 3s;
+}
+
+.fadeIn {
+	-webkit-animation: fadein 3s;
+}
+
+.fadeOut {
+	-webkit-animation: fadeout 2s;
+}
+
+.hideForm {
+	display: none;
+}
+
+#logo {
+	margin-top: 100px;
+}
+
+p {
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+
+.photo-signup {
+	background-image: url('http://wcdn3.dataknet.com/static/resources/icons/set32/21fbd649.png');
+}
+
+.photo-info {
+	background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png");
+}
+
+.photo-login {
+	background-image: url('https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/login.png');
+}
+
+.photo-logo {
+	background-image: url('http://imgur.com/fLaCFwU.png');
+}
+
+.background-white {
+	background-color: white;
+}
+
+.background-size-one {
+	background-size: 30px;
+}
+
+.background-size-two {
+	background-size: 60px;
+}
+
+.background-size-three {
+	background-size: 50px;
+}
+
+.background-size-four {
+	background-size: 175px;
+	background-repeat: no-repeat;
+}
+
+.background-size-logo {
+	background-size: 250px;
+}
+
+.logocircle {
+	background-repeat: none;
+	height: 250px;
+	width: 250px;
+	background-position: center;
+	border-radius: 125px;
+	border: solid 4px white;
+	padding-top: 50px;
+}
+
+.circles {
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+}
+
+.one {
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
+	left: 220px;
+	bottom: 45px;
+}
+
+.two {
+	background-color: white;
+	border: solid white 3px;
+	background-position: center;
+	right: 85px;
+	background-repeat: no-repeat;
+	bottom: 45px;
+}
+
+.three {
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
+	right: 10px;
+	bottom: 110px;
+}
+

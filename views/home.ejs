@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>On My Tab</title>
+  <meta charset="utf-8">
+
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!-- On My Tab -->
+  <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+  <script src="/static/JS/homescript.js"></script>
+
+</head>
+
+<body>
+<div class='container'>
+
+<img src='http://s29.postimg.org/fll2oc0af/imageedit_1_8445127569.png' class='center-block' id='begin'>
+
+<div id="tripmeter">
+  <p>
+    Starting Location (lat, lon):<br/>
+    <span id="startLat"></span>°, <span id="startLon"></span>°
+  </p>
+  <p>
+    Current Location (lat, lon):<br/>
+    <span id="currentLat">???</span>°, <span id="currentLon">???</span>°
+  </p>
+  <p>
+    Distance from starting location:<br/>
+    <span id="distance">0</span> miles
+  </p>
+</div>
+</div>
+
+
+<%= yelpResults %>
+
+</body>
+
+</html>
