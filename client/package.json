@@ -27,6 +27,11 @@
   "bugs": {
     "url": "https://github.com/isomdurm/OnMyTab/issues"
   },
+  "scripts": {
+  "start": "node server.js"
+  },
   "homepage": "https://github.com/isomdurm/OnMyTab#readme",
   "description": ""
 }
+
+

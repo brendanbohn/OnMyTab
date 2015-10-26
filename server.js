@@ -9,6 +9,11 @@ var session = require('express-session');
 
 //CONFIGURATION
 
+mongoose.connect(
+  process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/YOUR_LOCAL_DATABASE_NAME' // plug in the db name you've been using
+);
 
 app.set('view engine', 'ejs');
 
@@ -76,6 +81,5 @@ app.post('/users', function (req, res) {
 // });
 
 
-app.listen(3000, function() {
-	console.log('Listening on port 3000');
+app.listen(process.env.PORT || 3000);
 });
