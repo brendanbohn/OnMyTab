@@ -56,7 +56,6 @@ var request_yelp = function(set_parameters, callback) {
 
   /* Add the query string to the url */
   var apiURL = url + '&' + paramURL;
-  console.log(apiURL);
   /* Then we use request to send make the API Request */
   // request(apiURL, function (error, response, body){
   //   return callback(error, response, body);

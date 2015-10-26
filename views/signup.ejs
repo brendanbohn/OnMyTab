@@ -41,34 +41,102 @@
   <p data-action="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
 </div>
 
+<div class="pad shape1" data-pad="1">
+  <audio preload="auto" class="sound1">
+    <source src="/sounds/mp3/sounds1.mp3" type="audio/mpeg"/>
+    <source src="/sounds/ogg/sounds1.ogg" type="audio/ogg"/>
+  </audio>
+</div>
+
+<div class="pad shape2" data-pad="2">
+  <audio preload="auto" class="sound2">
+    <source src="/sounds/mp3/sounds2.mp3"  type="audio/mpeg"/>
+    <source src="/sounds/ogg/sounds2.ogg" type="audio/ogg"/>
+  </audio>
+</div>
+
+<div class="pad shape3" data-pad="3">
+  <audio preload="auto" class="sound3">
+    <source src="/sounds/mp3/sounds3.mp3" type="audio/mpeg"/>
+    <source src="/sounds/ogg/sounds3.ogg" type="audio/ogg"/>
+  </audio>
+</div>
+
+<div class="pad shape4" data-pad="4">
+  <audio preload="auto" class="sound4">
+    <source src="/sounds/mp3/sounds4.mp3" type="audio/mpeg"/>
+    <source src="/sounds/ogg/sounds4.ogg" type="audio/ogg"/>
+  </audio>
+</div>
+<!-- SIMON SAYS GAME -->
+
+
+
+
+
+
+
+
+<!-- LOGGED IN DISPLAY -->
+<div class='logged-in'>
+
+
+
+
+
+<!-- PROFILE CIRCLE -->
+<div class='center-block profilecircle' id='profile'><span id='profile-photo'></span>
+  <div class='profile-options'>
+    <div class='options-one' id='logout'></div>
+    <div class='options-two' id='messages'></div>
+    <div class='options-three' id='settings'></div>
+  </div>
+</div>
+<p id='display-user-name'>Isom Durm</p>
+<!-- PROFILE CIRCLE -->
+
+
+
+
+</div>
+<!-- LOGGED IN DISPLAY -->
+
+
+
+
+
+
+
+<!-- NOT LOGGED IN DISPLAY -->
+<div class='not-logged-in'>
+
+
+
+
 <!-- LOGO FOR START UP PAGE -->
 <div class='col-sm-12'>
 <div class='center-block logocircle' id='logo'><span id='logo-photo'></span>
-  <div class='options'>
-  <div class='circles one' id='one'></div>
-  <div class='circles two' id='two'></div>
-  <div class='circles three' id='three'></div>
+  <div class='options not-logged-in'>
+    <div class='circles one' id='one'></div>
+    <div class='circles two' id='two'></div>
+    <div class='circles three' id='three'></div>
   </div>
 </div>
 <p id='welcome'>On My Tab</p>
 </div>
 <!-- LOGO FOR START UP PAGE -->
 
-
 <!-- FORM FOR SIGN UP -->
-<div class='col-sm-2 col-sm-offset-5'>
+<div class='col-sm-4 col-sm-offset-4'>
   <p id='signup'>Sign Up</p>
   <form class="form" id="new-profile-form">
-    <input name="name" type="text" class="form-control center-block" id="profile-name-input" placeholder="Name">
-    <input name="age" type="text" class="form-control center-block" id="profile-age-input" placeholder="Age">
-    <input name="url" type="text" class="form-control center-block" id="profile-url-input" placeholder="Image URL">
+    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
+    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
     <br>
-    <button type="submit" class="btn btn-primary center-block" id="changepage">Create</button>
+    <button type="submit" class="btn btn-primary center-block">Create</button>
   </form>
 </div>
 <!-- FORM FOR SIGN UP -->
-
-
 
 <!-- INFORMATION ABOUT APP -->
 <div class='col-sm-4 col-sm-offset-4' id='info'>
@@ -77,16 +145,34 @@
 </div>
 <!-- INFORMATION ABOUT APP -->
 
-
-
 <!-- LOGIN FORM -->
 <div class='col-sm-2 col-sm-offset-5' id='form-login'>
   <p>Log In</p>
   <input name='username' type='text' class='form-control center-block' id='username-input' placeholder='User Name: '>
   <input name='password' type='text' class='form-control center-block' id='password-input' placeholder='Password: '>
+  <br>
+  <button type='submit' class='btn btn-primary center-block'>Log In</button>
 </div>
 <!-- LOGIN FORM -->
+
+
+
+
+
+</div>
+<!-- NOT LOGGED IN DISPLAY -->
   
+
+
+
+
+
+
+
+
+
+
+<!-- SCRIPT FOR SIMON SAYS GAME -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -97,6 +183,11 @@
     ga('send', 'pageview');
 
   </script>
+<!-- SCRIPT FOR SIMON SAYS GAME -->
+
+
+
+
 
 </body>
 </html>

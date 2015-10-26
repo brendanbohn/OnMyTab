@@ -1,6 +1,51 @@
 
 $(document).ready(function(){
 
+	function checkAuth() {
+		$.get('/current-user', function (data) {
+			console.log(data);
+			if (data.user) {
+				$('.not-logged-in').hide();
+				$('.logged-in').removeClass().show();
+			} else {
+				$('.not-logged-in').show();
+				$('.logged-in').hide();
+			};
+		});
+	};
+
+	checkAuth();
+
+	$('#new-profile-form').on('submit', function(e) {
+		e.preventDefault();
+		var newUser = $(this).serialize();
+
+		$.post('/users', newUser, function (data) {
+			console.log(data);
+			$('.not-logged-in').removeClass().addClass('hideForm');
+			$('.logged-in').show();
+		});
+	});
+
+
+
+// LOGGED IN DISPLAY
+
+	$('.options-one').addClass('photo-messages');
+
+	$('.options-two').addClass('photo-settings');
+
+	$('.options-three').addClass('photo-profile');
+
+
+
+
+
+
+
+
+// NOT LOGGED IN DISPLAY
+
 	$('#logo').addClass('grow').addClass('photo-logo').addClass('background-size-logo');
 
 	$('#welcome').addClass('fadeIn');
@@ -156,19 +201,22 @@ $(document).ready(function(){
 		};
 	});
 
-	$('#new-profile-form').on('submit', function(e) {
-		e.preventDefault();
-		var newUser = $(this).serialize();
-		console.log(newUser);
+// NOT LOGGED IN DISPLAY
 
-		$.post('/api/user', newUser, function(response) {
-			var newUser = response;
-		});
 
-		window.location = 'http://localhost:3000/home';
-		
-	});
 
+
+
+
+
+
+
+
+
+
+
+
+// SIMON SAYS GAME JS
 
 	var Simon = {
 		sequence: [],
@@ -176,6 +224,7 @@ $(document).ready(function(){
 		round: 0,
 		active: true,
 		mode: 'normal',
+
 	
 		init: function() {
 			var that = this;
@@ -250,11 +299,12 @@ $(document).ready(function(){
 					that.registerClick(e);
 				})
 
-				.on('mousedown', '[data-tile]', function(){
+				.on('mousedown', '[data-tile]', function() {
 					$(this).addClass('active');
+					that.playSound($(this).data('tile'));
 				})
 
-				.on('mouseup', '[data-tile]', function(){
+				.on('mouseup', '[data-tile]', function() {
 					$(this).removeClass('active');
 				});
 
@@ -277,6 +327,7 @@ $(document).ready(function(){
 			var i = 0;
 			var that = this;
 			var interval = setInterval(function() {
+				that.playSound(sequence[i]);
 				that.lightUp(sequence[i]);
 
 				i++;
@@ -295,6 +346,15 @@ $(document).ready(function(){
 				}, 300);
 			}
 
+		},
+
+		playSound: function(tile) {
+			if (this.mode !== 'light-only') {
+				var audio = $('<audio autoplay></audio>');
+				audio.append('<source src="/sounds/ogg/sounds' + tile + '.ogg" type="audio/ogg" />');
+				audio.append('<source src="/sounds/mp3/sounds' + tile + '.mp3" type="audio/mp3" />');
+				$('[data-action=sound]').html(audio);
+			}
 		},
 
 		randomNumber: function() {

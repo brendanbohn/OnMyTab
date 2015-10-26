@@ -26,6 +26,8 @@ body {
 	100%{ transform: scale(0);	}
 }
 
+
+/*ANIMATIONS*/
 .grow {
 	-webkit-animation: grow 3s;
 }
@@ -49,6 +51,9 @@ body {
 .hideForm {
 	display: none;
 }
+/*ANIMATIONS*/
+
+
 
 #logo {
 	margin-top: 100px;
@@ -60,6 +65,8 @@ p {
 	font-size: 30px;
 }
 
+
+/*PHOTO CLASSES*/
 .photo-signup {
 	background-image: url('http://wcdn3.dataknet.com/static/resources/icons/set32/21fbd649.png');
 }
@@ -76,6 +83,24 @@ p {
 	background-image: url('http://imgur.com/fLaCFwU.png');
 }
 
+.photo-messages {
+	background-image: url('http://icons.iconarchive.com/icons/xenatt/the-circle/256/App-Messages-icon.png');
+}
+
+.photo-settings {
+	background-image: url('http://www.anz.com/resources/5/1/51effbe1-70cb-4203-b8f2-c1555c306d46/4/settings.png?MOD=AJPERES&CACHEID=51effbe1-70cb-4203-b8f2-c1555c306d46/4');
+}
+
+.photo-profile {
+	background-image: url('http://s16.postimg.org/mxe7m0ptx/Head_Profile.png');
+}
+
+
+/*PHOTO CLASSES*/
+
+
+
+/*BACKGROUND SIZE CLASSES*/
 .background-white {
 	background-color: white;
 }
@@ -101,6 +126,76 @@ p {
 	background-size: 250px;
 }
 
+/*BACKGROUND SIZE CLASSES*/
+
+
+
+
+/*LOGGED IN DISPLAY*/
+
+.profilecircle {
+	background-repeat: none;
+	height: 250px;
+	width: 250px;
+	background-position: center;
+	border-radius: 125px;
+	border: solid 4px white;
+	margin-top: 100px;
+}
+
+.options-one {
+	bottom: 10px;
+	right: 20px;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 40px;
+	border: solid white 3px;
+
+}
+
+.options-two {
+	bottom: 60px;
+	left: 40px;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	background-size: 35px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
+}
+
+.options-three {
+	bottom: 10px;
+	left: 105px;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	background-size: 40px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
+
+}
+
+
+
+
+
+
+
+
+
+/*NOT LOGGED IN DISPLAY*/
 .logocircle {
 	background-repeat: none;
 	height: 250px;
@@ -143,6 +238,52 @@ p {
 	right: 10px;
 	bottom: 110px;
 }
+/*NOT LOGGED IN DISPLAY*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -264,6 +405,7 @@ footer {
 	clear: both;
 	text-align: center;
 }
+/*SIMON SAYS GAME*/
 
 
 
