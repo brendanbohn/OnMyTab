@@ -9,12 +9,6 @@ var session = require('express-session');
 
 //CONFIGURATION
 
-mongoose.connect(
-  process.env.MONGOLAB_URI ||
-  process.env.MONGOHQ_URL ||
-  'mongodb://localhost/YOUR_LOCAL_DATABASE_NAME' // plug in the db name you've been using
-);
-
 app.set('view engine', 'ejs');
 
 app.use('/static', express.static('public'));
