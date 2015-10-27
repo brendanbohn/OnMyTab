@@ -90,9 +90,23 @@
     <div class='options-one' id='logout'></div>
     <div class='options-two' id='messages'></div>
     <div class='options-three' id='settings'></div>
+    <div class='options-four' id='users'></div>
+    <div class='options-five' id='nearby'></div>
   </div>
 </div>
-<p id='display-user-name'>Isom Durm</p>
+
+
+
+
+
+
+<div class='location'>
+<p id='lat'></p>
+<p id='lon'></p>
+<% for (var i=0; i<yelpResults.length; i++) { %>
+<p><%= yelpResults[i].name %></p>
+<% }; %>
+</div>
 <!-- PROFILE CIRCLE -->
 
 

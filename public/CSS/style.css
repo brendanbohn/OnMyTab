@@ -95,6 +95,18 @@ p {
 	background-image: url('http://s16.postimg.org/mxe7m0ptx/Head_Profile.png');
 }
 
+.photo-user {
+	background-image: url('https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg');
+}
+
+.photo-users {
+	background-image: url('https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users1-512.png');
+}
+
+.photo-nearbys {
+	background-image: url('http://s8.postimg.org/vqrp6afzp/draft_512.png');
+}
+
 
 /*PHOTO CLASSES*/
 
@@ -138,9 +150,11 @@ p {
 	height: 250px;
 	width: 250px;
 	background-position: center;
+	background-size: 250px;
 	border-radius: 125px;
 	border: solid 4px white;
 	margin-top: 100px;
+	z-index: 1;
 }
 
 .options-one {
@@ -155,6 +169,7 @@ p {
 	background-repeat: no-repeat;
 	background-size: 40px;
 	border: solid white 3px;
+	z-index: -1;
 
 }
 
@@ -170,6 +185,7 @@ p {
 	background-position: center;
 	background-repeat: no-repeat;
 	border: solid white 3px;
+	z-index: -1;
 }
 
 .options-three {
@@ -184,16 +200,40 @@ p {
 	background-position: center;
 	background-repeat: no-repeat;
 	border: solid white 3px;
+	z-index: -1;
+
+}
+
+.options-four {
+	top: 100px;
+	left: 90px;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	background-size: 40px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
 
 }
 
 
+.options-five {
+	top: 50px;
+	right: 60px;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	border-radius: 25px;
+	background-size: 30px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: solid white 3px;
 
-
-
-
-
-
+}
 
 /*NOT LOGGED IN DISPLAY*/
 .logocircle {

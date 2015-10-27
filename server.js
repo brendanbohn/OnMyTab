@@ -15,7 +15,7 @@ app.use('/static', express.static('public'));
 
 app.use('/sounds', express.static('sounds'));
 
-app.use('/client', express.static('Client'));
+app.use('/client', express.static('client'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,7 +27,7 @@ app.use(session({
 }));
 
 var db = require('./models/');
-var yelp = require('./client/yelp');
+var yelp = require('./client/yelp.js');
 
 
 
@@ -37,16 +37,11 @@ app.get('/current-user', function (req, res) {
 });
 
 // YELP REQUEST
-app.get('/home', function(req, res) {
-	yelp.request_yelp({term: 'yelp', location: 'San+Francisco', limit: '1'}, function(err, response, body) {
+app.get('/', function(req, res) {
+	yelp.request_yelp({term: 'bar', location: 'San+Francisco', cll: '37.7605332,-122.42856789999998', radius_filter: 10, limit: '1'}, function(err, response, body) {
     var yelpResults = JSON.parse(body).businesses;
-    	res.render('home', { yelpResults: yelpResults });
+    	res.render('signup', { yelpResults: yelpResults });
  	});
-});
-
-// SIGN UP REQUEST
-app.get('/', function (req, res) {
-	res.render('signup');
 });
 
 // USER DATABASE ADD 
@@ -60,19 +55,12 @@ app.post('/users', function (req, res) {
   })
 });
 
-
-
-
-
-
-
-
-// // USER DATABASE RENDER
-// app.get('/users', function (req, res) {
-//  db.User.find(function (err, User) {
-//      res.send(User);
-//     });
-// });
+// USER DATABASE RENDER
+app.get('/users', function (req, res) {
+ db.User.find(function (err, User) {
+     res.send(User);
+    });
+});
 
 
 app.listen(process.env.PORT || 3000);

@@ -1,6 +1,28 @@
 
 $(document).ready(function(){
 
+
+	// GET USER LOCATION
+
+	if (navigator.geolocation) {
+    	console.log('Geolocation is supported!');
+  	} else {
+    	console.log('Geolocation is not supported for this Browser/OS version yet.');
+  	};
+
+  	navigator.geolocation.watchPosition(function(position) {
+    	var lat = position.coords.latitude;
+    	var lon = position.coords.longitude;
+    	console.log(lat, lon);
+	});
+
+	// GET USER LOCATION
+
+
+
+
+	// CHECK COOKIES IF LOGGED IN
+
 	function checkAuth() {
 		$.get('/current-user', function (data) {
 			console.log(data);
@@ -16,6 +38,12 @@ $(document).ready(function(){
 
 	checkAuth();
 
+	// CHECK COOKIES IF LOGGED IN
+
+
+
+	// SUBMIT FORM FOR SIGN UP
+
 	$('#new-profile-form').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
@@ -27,6 +55,8 @@ $(document).ready(function(){
 		});
 	});
 
+	//SUBMIT FORM FOR SIGN UP
+
 
 
 // LOGGED IN DISPLAY
@@ -36,6 +66,25 @@ $(document).ready(function(){
 	$('.options-two').addClass('photo-settings');
 
 	$('.options-three').addClass('photo-profile');
+
+	$('.options-four').addClass('photo-users');
+
+	$('.options-five').addClass('photo-nearbys');
+
+	$('#profile').addClass('photo-user');
+
+
+
+	$('#users').on('click', function() {
+		$('#profile').removeClass('photo-user').addClass('photo-users');
+		$('.profile-options').addClass('shrink');
+		$('.profile-options').one('webkitAnimationEnd', function() {
+			$('.profile-options').removeClass('shrink').addClass('hideForm');
+		})
+
+	})
+
+
 
 
 
