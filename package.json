@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "dotenv": "^1.2.0",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-session": "^1.12.0",
     "lodash": "^3.10.1",
     "mongoose": "^4.2.0",
     "nonce": "^1.0.3",
@@ -27,11 +28,6 @@
   "bugs": {
     "url": "https://github.com/isomdurm/OnMyTab/issues"
   },
-  "scripts": {
-  "start": "node server.js"
-  },
   "homepage": "https://github.com/isomdurm/OnMyTab#readme",
   "description": ""
 }
-
-
