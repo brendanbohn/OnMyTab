@@ -45,7 +45,7 @@ app.get('/home', function(req, res) {
 });
 
 // SIGN UP REQUEST
-app.get('/signup', function (req, res) {
+app.get('/', function (req, res) {
 	res.render('signup');
 });
 
