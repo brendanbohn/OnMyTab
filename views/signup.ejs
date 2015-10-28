@@ -18,6 +18,8 @@
 
   <script src="/static/JS/script.js"></script>
 
+  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAxW6mI3rFiz6445noXGmTEr0ZAESRcxxg'></script>
+
 </head>
 <body>
 
@@ -78,7 +80,7 @@
 
 
 <!-- LOGGED IN DISPLAY -->
-<div class='logged-in'>
+<div class='logged-in col-sm-12'>
 
 
 
@@ -86,27 +88,19 @@
 
 <!-- PROFILE CIRCLE -->
 <div class='center-block profilecircle' id='profile'><span id='profile-photo'></span>
-  <div class='profile-options'>
-    <div class='options-one' id='logout'></div>
-    <div class='options-two' id='messages'></div>
-    <div class='options-three' id='settings'></div>
+  <div class='logged-in-options'>
+    <div class='options-one' id='messages'></div>
+    <div class='options-two' id='settings'></div>
+    <div class='options-three' id='logout'></div>
     <div class='options-four' id='users'></div>
-    <div class='options-five' id='nearby'></div>
+    <div class='options-five' id='nearbys'></div>
   </div>
 </div>
+<p id='bar-location'></p>
 
-
-
-
-
-
-<div class='location'>
-<p id='lat'></p>
-<p id='lon'></p>
-<% for (var i=0; i<yelpResults.length; i++) { %>
-<p><%= yelpResults[i].name %></p>
-<% }; %>
+<div class='center-block nearbyBars' id='map'>
 </div>
+
 <!-- PROFILE CIRCLE -->
 
 
@@ -160,12 +154,14 @@
 <!-- INFORMATION ABOUT APP -->
 
 <!-- LOGIN FORM -->
-<div class='col-sm-2 col-sm-offset-5' id='form-login'>
-  <p>Log In</p>
-  <input name='username' type='text' class='form-control center-block' id='username-input' placeholder='User Name: '>
-  <input name='password' type='text' class='form-control center-block' id='password-input' placeholder='Password: '>
-  <br>
-  <button type='submit' class='btn btn-primary center-block'>Log In</button>
+<div class='col-sm-2 col-sm-offset-5'>
+  <p id='login'>Log In</p>
+  <form class='form' id='form-login'>
+    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
+    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
+    <br>
+    <button type='submit' id='submit-login' class='btn btn-primary center-block'>Log In</button>
+    </form>
 </div>
 <!-- LOGIN FORM -->
 

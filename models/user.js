@@ -19,10 +19,30 @@ var UserModel = this;
 
       UserModel.create({
         email: email,
-        passwordDigest: hash
+        password: hash
       }, callback);
     });
   });
+};
+
+// authenticate user (when user logs in)
+UserSchema.statics.authenticate = function (email, password, callback) {
+ // find user by email entered at log in
+ this.findOne({email: email}, function (err, foundUser) {
+   console.log(foundUser);
+
+   // throw error if can't find user
+   if (!foundUser) {
+     callback('No user with ' + email, null);  // better error structures are available, but a string is good enough for now
+   // if we found a user, check if password is correct
+   } else if (foundUser.checkPassword(password)) {
+     callback(null, foundUser);
+   }
+ });
+};
+
+UserSchema.methods.checkPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
 };
 
 var User = mongoose.model('User', UserSchema);

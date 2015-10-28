@@ -2,8 +2,12 @@
 $(document).ready(function(){
 
 
-	// GET USER LOCATION
 
+
+
+
+
+	// GET USER LOCATION
 	if (navigator.geolocation) {
     	console.log('Geolocation is supported!');
   	} else {
@@ -11,22 +15,88 @@ $(document).ready(function(){
   	};
 
   	navigator.geolocation.watchPosition(function(position) {
+
     	var lat = position.coords.latitude;
     	var lon = position.coords.longitude;
     	console.log(lat, lon);
-	});
+    	var swlat = lat + 0.001;
+    	var swlon = lon + 0.001;
+    	var nelat = lat - 0.001;
+    	var nelon = lon - 0.001;
 
-	// GET USER LOCATION
+    	function getLocations() {
+	      	$.post('/api/yelp', userBarOptions, function (data) {
+
+	      		var marker, i;
+	      		var markers = new Array();
+
+	      		for (var i=0; i < data.length; i++) {
+
+	      			var infowindow = new google.maps.InfoWindow();
+
+	      			var marker = new google.maps.Marker({
+	      				position: {lat: data[i].location.coordinate.latitude, lng: data[i].location.coordinate.longitude },
+	      				map: map,
+	      				title: data[i].name
+	      			});
+
+	      			markers.push(marker);
+	      			console.log(markers);
+
+	      			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    					return function() {
+      						infowindow.setContent('<p id="marker-content">' + data[i].name + '</p>' + '<img id="marker-photos" src="' + data[i].image_url + '">');
+      						infowindow.open(map, marker);
+    					}
+  					})(marker, i));
+	      		};
+	        });
+		};
+
+    	function initMap() {
+			
+			var myOptions = {
+                zoom: 14,
+                center: {lat: position.coords.latitude, lng: position.coords.longitude }
+            };
+
+            map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+  			var marker = new google.maps.Marker({
+    			position: {lat: position.coords.latitude, lng: position.coords.longitude },
+    			map: map,
+    			title: 'Hello World!'
+  			});
+		};
+
+    	console.log(swlat, swlon, nelat, nelon);
+
+    	var userBarLocation = {term: 'bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon };
+    	var userBarOptions = {term: 'bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon, limit: '3'};
+
+    	$.post('/api/yelp', userBarLocation, function (data) {
+    		$('#bar-location').html(data[0].name);
+    	});
+
+    	$('.options-five').on('click', function() {
+    		$('#profile').hide();
+    		$('#bar-location').hide();
+    		$.post('api/yelp', userBarOptions, function (data) {
+    			initMap();
+    			getLocations();
+    		});
+    	});
+    });
+	// GET USER LOCATION 
+
 
 
 
 
 	// CHECK COOKIES IF LOGGED IN
-
 	function checkAuth() {
 		$.get('/current-user', function (data) {
-			console.log(data);
-			if (data.user) {
+			if (data.user || data.cookie) {
 				$('.not-logged-in').hide();
 				$('.logged-in').removeClass().show();
 			} else {
@@ -37,35 +107,68 @@ $(document).ready(function(){
 	};
 
 	checkAuth();
-
 	// CHECK COOKIES IF LOGGED IN
 
 
 
-	// SUBMIT FORM FOR SIGN UP
 
+
+	// SUBMIT FORM FOR SIGN UP
 	$('#new-profile-form').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
+		console.log(newUser);
 
-		$.post('/users', newUser, function (data) {
+		$.post('/api/users', newUser, function (data) {
 			console.log(data);
 			$('.not-logged-in').removeClass().addClass('hideForm');
 			$('.logged-in').show();
 		});
 	});
-
 	//SUBMIT FORM FOR SIGN UP
 
 
 
-// LOGGED IN DISPLAY
 
+
+
+	// SUBMIT FORM FOR LOG IN
+	$('#form-login').on('submit', function(e) {
+		e.preventDefault();
+		var newUser = $(this).serialize();
+
+		$.post('/login', newUser, function (data) {
+			checkAuth();
+		});
+	});
+	// SUBMIT FORM FOR LOG IN
+
+
+
+
+
+
+
+	// LOGOUT ON CLICK FUNCTION
+	$('#logout').on('click', function() {
+		$.get('/logout', function (data) {
+			console.log(data.msg);
+		});
+	});
+	// LOGOUT ON CLICK FUNCTION
+
+
+
+
+
+
+
+// LOGGED IN DISPLAY
 	$('.options-one').addClass('photo-messages');
 
 	$('.options-two').addClass('photo-settings');
 
-	$('.options-three').addClass('photo-profile');
+	$('.options-three').addClass('photo-logout');
 
 	$('.options-four').addClass('photo-users');
 
@@ -94,7 +197,6 @@ $(document).ready(function(){
 
 
 // NOT LOGGED IN DISPLAY
-
 	$('#logo').addClass('grow').addClass('photo-logo').addClass('background-size-logo');
 
 	$('#welcome').addClass('fadeIn');
@@ -249,7 +351,6 @@ $(document).ready(function(){
 			$('#info').addClass('hideForm').removeClass('fadeIn');
 		};
 	});
-
 // NOT LOGGED IN DISPLAY
 
 
@@ -266,7 +367,6 @@ $(document).ready(function(){
 
 
 // SIMON SAYS GAME JS
-
 	var Simon = {
 		sequence: [],
 		copy: [],

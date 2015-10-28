@@ -86,12 +86,12 @@ p {
 .photo-messages {
 	background-image: url('http://icons.iconarchive.com/icons/xenatt/the-circle/256/App-Messages-icon.png');
 }
-
+ 
 .photo-settings {
 	background-image: url('http://www.anz.com/resources/5/1/51effbe1-70cb-4203-b8f2-c1555c306d46/4/settings.png?MOD=AJPERES&CACHEID=51effbe1-70cb-4203-b8f2-c1555c306d46/4');
 }
 
-.photo-profile {
+.photo-logout {
 	background-image: url('http://s16.postimg.org/mxe7m0ptx/Head_Profile.png');
 }
 
@@ -145,6 +145,11 @@ p {
 
 /*LOGGED IN DISPLAY*/
 
+.nearbyBars {
+	color: white;
+	font-size: 20px;
+}
+
 .profilecircle {
 	background-repeat: none;
 	height: 250px;
@@ -154,7 +159,6 @@ p {
 	border-radius: 125px;
 	border: solid 4px white;
 	margin-top: 100px;
-	z-index: 1;
 }
 
 .options-one {
@@ -169,8 +173,28 @@ p {
 	background-repeat: no-repeat;
 	background-size: 40px;
 	border: solid white 3px;
-	z-index: -1;
 
+}
+
+#map {
+	height: 500px;
+	width: 500px;
+	border-radius: 250px;
+}
+
+#marker-content {
+	color: black;
+	font-size: 15px;
+}
+
+.infoWindow {
+	background-color: darkblue;
+}
+
+#marker-photos {
+	height: 100px;
+	width: 100px;
+	background-position: center;
 }
 
 .options-two {
@@ -185,7 +209,6 @@ p {
 	background-position: center;
 	background-repeat: no-repeat;
 	border: solid white 3px;
-	z-index: -1;
 }
 
 .options-three {
@@ -200,7 +223,6 @@ p {
 	background-position: center;
 	background-repeat: no-repeat;
 	border: solid white 3px;
-	z-index: -1;
 
 }
 

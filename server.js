@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
 var session = require('express-session');
+var cookieparser = require('cookie-parser');
 
 
 //requires models as the database
@@ -17,50 +18,76 @@ app.use('/sounds', express.static('sounds'));
 
 app.use('/client', express.static('client'));
 
+app.use(cookieparser());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: 'SuperSecretCookie',
-  cookie: { maxAge: 600000 }
+  cookie: { maxAge: 60000000 }
 }));
 
 var db = require('./models/');
 var yelp = require('./client/yelp.js');
 
 
-
 // CHECKS COOKIES TO SEE IF USER DONE
 app.get('/current-user', function (req, res) {
-  res.json({ user: req.session.user });
+  res.json({ user: req.session.user, cookie: req.cookies.userId });
 });
 
-// YELP REQUEST
+// RENDER HOME PAGE
 app.get('/', function(req, res) {
-	yelp.request_yelp({term: 'bar', location: 'San+Francisco', cll: '37.7605332,-122.42856789999998', radius_filter: 10, limit: '1'}, function(err, response, body) {
-    var yelpResults = JSON.parse(body).businesses;
-    	res.render('signup', { yelpResults: yelpResults });
- 	});
+	res.render('signup');
+});
+
+// LOGOUT
+app.get('/logout', function (req, res) {
+  req.session.user = null;
+  res.clearCookie('userId', {path: '/'});
+  res.json({ msg: 'User logged out successfully' });
+});
+
+// LOGIN
+app.post('/login', function (req, res) {
+  var user = req.body;
+  db.User.authenticate(user.email, user.password, function (err, user) {
+    if (err) { console.log('There was an error: ', err) };
+    req.session.user = user;
+    res.cookie('userId', user._id);
+    res.json(user);
+  });
 });
 
 // USER DATABASE ADD 
-app.post('/users', function (req, res) {
-	console.log(req.body);
+app.post('/api/users', function (req, res) {
   var user = req.body;
   db.User.createSecure(user.email, user.password, function (err, user) {
-    req.session.userId = user._id;
     req.session.user = user;
-    res.json({ user: user, msg: 'User added successfully'});
+    res.cookie('userId', user._id);
+    res.json({ user: user, msg: 'User logged in successfully'});
   })
 });
 
 // USER DATABASE RENDER
-app.get('/users', function (req, res) {
+app.get('/api/users', function (req, res) {
  db.User.find(function (err, User) {
      res.send(User);
     });
 });
 
+// YELP API
+app.post('/api/yelp', function (req, res) {
+  yelp.request_yelp(req.body, function(err, response, body) {
+    var yelpResults = JSON.parse(body).businesses;
+    res.json(yelpResults);
+  });
+});
+
+
 
 app.listen(process.env.PORT || 3000);
+
+
