@@ -6,8 +6,7 @@ $(document).ready(function(){
 
 
 
-
-	// GET USER LOCATION
+	// GET USER LOCATION && APPEND NEARBYS
 	if (navigator.geolocation) {
     	console.log('Geolocation is supported!');
   	} else {
@@ -19,10 +18,10 @@ $(document).ready(function(){
     	var lat = position.coords.latitude;
     	var lon = position.coords.longitude;
     	console.log(lat, lon);
-    	var swlat = lat + 0.001;
-    	var swlon = lon + 0.001;
-    	var nelat = lat - 0.001;
-    	var nelon = lon - 0.001;
+    	var swlat = lat + 0.01;
+    	var swlon = lon + 0.01;
+    	var nelat = lat - 0.01;
+    	var nelon = lon - 0.01;
 
     	function getLocations() {
 	      	$.post('/api/yelp', userBarOptions, function (data) {
@@ -32,73 +31,185 @@ $(document).ready(function(){
 
 	      		for (var i=0; i < data.length; i++) {
 
-	      			var infowindow = new google.maps.InfoWindow();
+	      			// var infowindow = new google.maps.InfoWindow();
+
+	      			 var icon = {
+		    			url: 'http://s11.postimg.org/t2zmfzvj7/marker_icon.png', // url
+		    			scaledSize: new google.maps.Size(50, 50), // scaled size
+		    			origin: new google.maps.Point(0,0), // origin
+		    			anchor: new google.maps.Point(25, 0) // anchor
+					};
 
 	      			var marker = new google.maps.Marker({
 	      				position: {lat: data[i].location.coordinate.latitude, lng: data[i].location.coordinate.longitude },
 	      				map: map,
-	      				title: data[i].name
+	      				animation: google.maps.Animation.DROP,
+	      				title: data[i].name,
+	      				icon: icon
 	      			});
 
 	      			markers.push(marker);
-	      			console.log(markers);
 
 	      			google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    					return function() {
-      						infowindow.setContent('<p id="marker-content">' + data[i].name + '</p>' + '<img id="marker-photos" src="' + data[i].image_url + '">');
-      						infowindow.open(map, marker);
-    					}
-  					})(marker, i));
+
+	      				return function() {
+
+	      					$('#bar-click').html(data[i].name).show();
+
+	      					$('#cross-streets').html(data[i].location.cross_streets);
+
+	      					var barName = data[i].image_url;
+
+	      					if (!barName) {
+	      						barName = data[i].snippet_image_url;
+	      					};
+
+	      					var infoBubble = new InfoBubble({
+		  						content: '<div class="center-block" id="centerthis"><img id="marker-profile-photo" src="' + barName + '"></div>',
+		  						minWidth: 105,
+				  				minHeight: 105,
+				  				shadowStyle: 1,
+				  				backgroundColor: 'rgb(57,57,57)',
+				  				borderRadius: 52.5,
+				  				borderWidth: 1,
+				  				borderColor: '#2c2c2c',
+				  				arrowStyle: 0
+							});
+
+  							if (!infoBubble.isOpen()) {
+    							infoBubble.open(map, marker);
+    							setTimeout(moveMapMarker, 100);
+								setTimeout(moveMap, 300);
+							}
+
+  						}
+
+					})(marker, i));
+
 	      		};
+
+	      		function moveMap() {
+					map.panBy(0, -80);
+				};
+
+				function moveMapMarker() {
+					map.setCenter(marker.getPosition());
+				};
+
 	        });
+
 		};
 
     	function initMap() {
-			
+
+    		var styles = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
+
+			var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"} );
+
+
+
 			var myOptions = {
-                zoom: 14,
-                center: {lat: position.coords.latitude, lng: position.coords.longitude }
+                zoom: 15,
+                center: {lat: position.coords.latitude, lng: position.coords.longitude },
+                mapTypeControlOptions: {
+      				mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    			},
+    			disableDefaultUI: true
             };
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
 
+
+            var icon = {
+    			url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png', // url
+    			scaledSize: new google.maps.Size(40, 40), // scaled size
+    			origin: new google.maps.Point(0,0), // origin
+    			anchor: new google.maps.Point(20, 0) // anchor
+			};
+
+
+			var profilePhoto = 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg';
+
   			var marker = new google.maps.Marker({
     			position: {lat: position.coords.latitude, lng: position.coords.longitude },
     			map: map,
-    			title: 'Hello World!'
+    			title: 'Hello World!',
+    			icon: icon
   			});
+
+  			infoBubble = new InfoBubble({
+  				content: '<div class="center-block" id="centerthis"><img id ="marker-profile-photo" src="' + profilePhoto + '"></div>',
+  				minWidth: 105,
+  				minHeight: 105,
+  				shadowStyle: 1,
+  				backgroundColor: 'rgb(57,57,57)',
+  				borderRadius: 52.5,
+  				borderWidth: 1,
+  				borderColor: '#2c2c2c',
+  				arrowStyle: 0
+			});
+
+			infoBubble.open(map, marker);
+
+			setTimeout(moveMap, 500);
+
+  			google.maps.event.addListener(marker, 'click', function() {
+  				$('#bar-click').html('Isom Durm');
+  				$('#cross-streets').html(null);
+  				if (!infoBubble.isOpen()) {
+    				infoBubble.open(map, marker);
+    				setTimeout(moveMapMarker, 100);
+					setTimeout(moveMap, 300);
+  				};
+			});
+
+			function moveMap() {
+				map.panBy(0, -80);
+			};
+
+			function moveMapMarker() {
+				map.setCenter(marker.getPosition());
+			};
+
+  			// marker.addListener('click', function() {
+    	// 		infowindow.open(map, marker);
+  			// });
+
+  			map.mapTypes.set('map_style', styledMap);
+  			map.setMapTypeId('map_style');
+
 		};
 
     	console.log(swlat, swlon, nelat, nelon);
 
-    	var userBarLocation = {term: 'bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon };
-    	var userBarOptions = {term: 'bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon, limit: '3'};
+    	var userBarLocation = {term: 'gay+bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon };
+    	var userBarOptions = {term: 'gay+bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon, limit: '10'};
 
     	$.post('/api/yelp', userBarLocation, function (data) {
     		$('#bar-location').html(data[0].name);
     	});
 
     	$('.options-five').on('click', function() {
-    		$('#profile').hide();
-    		$('#bar-location').hide();
-    		$.post('api/yelp', userBarOptions, function (data) {
+    		$('#profile').addClass('shrink');
+    		$('#bar-location').addClass('shrink');
+    		$('#profile').one('webkitAnimationEnd', function() {
+    			$('#bar-location').addClass('hideForm');
     			initMap();
     			getLocations();
+    			$('#profile').hide();
+    			$('#map').removeClass('hideForm').addClass('grow');
     		});
     	});
+
     });
-	// GET USER LOCATION 
-
-
-
-
+	// GET USER LOCATION && APPEND NEARBYS
 
 	// CHECK COOKIES IF LOGGED IN
 	function checkAuth() {
 		$.get('/current-user', function (data) {
 			if (data.user || data.cookie) {
 				$('.not-logged-in').hide();
-				$('.logged-in').removeClass().show();
+				$('.logged-in').show();
 			} else {
 				$('.not-logged-in').show();
 				$('.logged-in').hide();
@@ -110,24 +221,20 @@ $(document).ready(function(){
 	// CHECK COOKIES IF LOGGED IN
 
 
-
-
+	$('#bar-click').addClass('hideForm');
 
 	// SUBMIT FORM FOR SIGN UP
 	$('#new-profile-form').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
 		console.log(newUser);
+		$('.logged-in').removeClass().show();
 
 		$.post('/api/users', newUser, function (data) {
 			console.log(data);
-			$('.not-logged-in').removeClass().addClass('hideForm');
-			$('.logged-in').show();
 		});
 	});
 	//SUBMIT FORM FOR SIGN UP
-
-
 
 
 
@@ -152,6 +259,17 @@ $(document).ready(function(){
 	// LOGOUT ON CLICK FUNCTION
 	$('#logout').on('click', function() {
 		$.get('/logout', function (data) {
+			$('#profile').addClass('shrink');
+			$('#profile').one('webkitAnimationEnd', function() {
+				$('#profile').hide();
+				$('.logged-in').addClass('hideForm');
+				$('#map').hide();
+				$('.not-logged-in').show().addClass('grow');
+			});
+			$('#bar-location').addClass('fadeOut');
+			$('#bar-location').one('webkitAnimationEnd', function() {
+				$('#bar-location').hide();
+			});
 			console.log(data.msg);
 		});
 	});
@@ -175,6 +293,8 @@ $(document).ready(function(){
 	$('.options-five').addClass('photo-nearbys');
 
 	$('#profile').addClass('photo-user');
+
+	$('#map').addClass('hideForm');
 
 
 
@@ -225,8 +345,7 @@ $(document).ready(function(){
 
 	$('#welcome').on('click', function() {
 		if ($('#logo').hasClass('photo-logo') && clicks == 1) {
-			$('#logo').addClass('simon-says');
-			$('.options').addClass('hideForm').removeClass('fadeIn');
+			$('.options').addClass('hideForm');
 			$('#welcome').addClass('hideForm');
 		};
 	});
@@ -235,13 +354,27 @@ $(document).ready(function(){
 		if ($('.options').hasClass('hideForm')) {
 			$('#logo').addClass('shrink');
 			$('#logo').one('webkitAnimationEnd', function() {
-				$('#logo').removeClass().addClass('hideForm');
+				$('#logo').addClass('hideForm');
 				$('.simonsays').removeClass('hideForm').addClass('grow');
 				$('.game-info').removeClass('hideForm').addClass('fadeIn');
 				Simon.init();
 			});
 		};
 	});
+
+	$('#return').on('click', function() {
+		$('.simonsays').addClass('shrink');
+		$('.game-info').addClass('fadeOut');
+		$('.simonsays').one('webkitAnimationEnd', function() {
+			$('.simonsays').hide();
+			$('#logo').removeClass('hideForm').removeClass('shrink').addClass('grow');
+			$('.options').removeClass().addClass('grow');
+			$('#welcome').removeClass().addClass('fadeIn');
+		});
+		$('.game-info').one('webkitAnimationEnd', function() {
+			$('.game-info').addClass('hideForm');
+		});
+	})
 
 	$('.one').on('click', function() {
 		if ($('.two').hasClass('photo-logo')) {

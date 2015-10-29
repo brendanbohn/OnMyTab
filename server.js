@@ -4,6 +4,8 @@ var app = express();
 var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieparser = require('cookie-parser');
+var multer  = require('multer');
+var upload = multer({ dest: './uploads/' });
 
 
 //requires models as the database
@@ -39,9 +41,15 @@ app.get('/current-user', function (req, res) {
 });
 
 // RENDER HOME PAGE
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.render('signup');
 });
+
+
+// ALLOW USER TO UPLOAD PHOTO
+// app.post('/api/photo', upload.single('userPhoto'), function (req, res, next) {
+//   var file = req.file;
+// });
 
 // LOGOUT
 app.get('/logout', function (req, res) {

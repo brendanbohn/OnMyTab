@@ -2,72 +2,86 @@
 <html>
 <head>
   <title>On My Tab</title>
-  <meta charset="utf-8">
+  <meta charset='utf-8'>
 
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
   <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js'></script>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
   <!-- Bootstrap JS -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
   <!-- On My Tab -->
-  <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+  <link rel='stylesheet' type='text/css' href='/static/CSS/style.css'>
 
-  <script src="/static/JS/script.js"></script>
+  <script src='/static/JS/script.js'></script>
 
   <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAxW6mI3rFiz6445noXGmTEr0ZAESRcxxg'></script>
+
+  <script src='http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/src/infobubble.js'></script>
 
 </head>
 <body>
 
+<nav class='navbar navbar-default'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <a class='navbar-brand' href='#'>
+        <img alt='Brand' src='http://s3.postimg.org/e9wql4yn7/brand.png' height='20' width='20'>
+      </a>
+      <p class='navbar-text navbar-right'>On My Tab</p>
+    </div>
+  </div>
+</nav>
+
 <!-- SIMON SAYS GAME -->
 <div class='col-sm-12 simonsays'>
-  <div class="game-board col-sm-4 col-sm-offset-4">
-    <div class="simon">
+  <div class='game-board col-sm-4 col-sm-offset-4'>
+    <div class='simon'>
       <ul>
-        <li class="tile red" data-tile="1"></li>
-        <li class="tile blue" data-tile="2"></li>
-        <li class="tile yellow" data-tile="3"></li>
-        <li class="tile green" data-tile="4"></li>
+        <li class='tile red' data-tile='1'></li>
+        <li class='tile blue' data-tile='2'></li>
+        <li class='tile yellow' data-tile='3'></li>
+        <li class='tile green' data-tile='4'></li>
       </ul>
     </div>
   </div>
 </div>
 
-<div class="game-info">
-<button data-action="start" >Start</button>
-  <h2>Round: <span data-round="0">0</span></h2>
-  <p data-action="lose">Sorry, you lost after <span data-round="0"></span> rounds!</p>
+<div class='game-info'>
+<button data-action='start' >Start</button>
+<button id='return'>Return</button>
+  <h2>Round: <span data-round='0'>0</span></h2>
+  <p data-action='lose'>Sorry, you lost after <span data-round='0'></span> rounds!</p>
 </div>
 
-<div class="pad shape1" data-pad="1">
-  <audio preload="auto" class="sound1">
-    <source src="/sounds/mp3/sounds1.mp3" type="audio/mpeg"/>
-    <source src="/sounds/ogg/sounds1.ogg" type="audio/ogg"/>
+<div class='pad shape1' data-pad='1'>
+  <audio preload='auto' class='sound1'>
+    <source src='/sounds/mp3/sounds1.mp3' type='audio/mpeg'/>
+    <source src='/sounds/ogg/sounds1.ogg' type='audio/ogg'/>
   </audio>
 </div>
 
-<div class="pad shape2" data-pad="2">
-  <audio preload="auto" class="sound2">
-    <source src="/sounds/mp3/sounds2.mp3"  type="audio/mpeg"/>
-    <source src="/sounds/ogg/sounds2.ogg" type="audio/ogg"/>
+<div class='pad shape2' data-pad='2'>
+  <audio preload='auto' class='sound2'>
+    <source src='/sounds/mp3/sounds2.mp3'  type='audio/mpeg'/>
+    <source src='/sounds/ogg/sounds2.ogg' type='audio/ogg'/>
   </audio>
 </div>
 
-<div class="pad shape3" data-pad="3">
-  <audio preload="auto" class="sound3">
-    <source src="/sounds/mp3/sounds3.mp3" type="audio/mpeg"/>
-    <source src="/sounds/ogg/sounds3.ogg" type="audio/ogg"/>
+<div class='pad shape3' data-pad='3'>
+  <audio preload='auto' class='sound3'>
+    <source src='/sounds/mp3/sounds3.mp3' type='audio/mpeg'/>
+    <source src='/sounds/ogg/sounds3.ogg' type='audio/ogg'/>
   </audio>
 </div>
 
-<div class="pad shape4" data-pad="4">
-  <audio preload="auto" class="sound4">
-    <source src="/sounds/mp3/sounds4.mp3" type="audio/mpeg"/>
-    <source src="/sounds/ogg/sounds4.ogg" type="audio/ogg"/>
+<div class='pad shape4' data-pad='4'>
+  <audio preload='auto' class='sound4'>
+    <source src='/sounds/mp3/sounds4.mp3' type='audio/mpeg'/>
+    <source src='/sounds/ogg/sounds4.ogg' type='audio/ogg'/>
   </audio>
 </div>
 <!-- SIMON SAYS GAME -->
@@ -84,8 +98,6 @@
 
 
 
-
-
 <!-- PROFILE CIRCLE -->
 <div class='center-block profilecircle' id='profile'><span id='profile-photo'></span>
   <div class='logged-in-options'>
@@ -96,23 +108,31 @@
     <div class='options-five' id='nearbys'></div>
   </div>
 </div>
-<p id='bar-location'></p>
+
+<!-- <form method='post' enctype='multipart/form-data' action='/api/photo'>
+  <input name='userPhoto' type='file'>
+  <input type='submit'>Upload
+</form> -->
 
 <div class='center-block nearbyBars' id='map'>
 </div>
+<p id='bar-location'></p>
+<!-- <p id='bar-click'></p>
+<p id='cross-streets'></p> -->
 
+
+
+<div id='centerbutton'>
+  <button class='btn btn-primary' id ='bar-click' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
+  </button>
+  <div class='collapse' id='collapseExample'>
+    <div id='cross-streets' class='well center-block'></div>
+  </div>
+</div>
 <!-- PROFILE CIRCLE -->
-
-
-
 
 </div>
 <!-- LOGGED IN DISPLAY -->
-
-
-
-
-
 
 
 <!-- NOT LOGGED IN DISPLAY -->
@@ -122,9 +142,9 @@
 
 
 <!-- LOGO FOR START UP PAGE -->
-<div class='col-sm-12'>
+<div class='col-sm-12 startup'>
 <div class='center-block logocircle' id='logo'><span id='logo-photo'></span>
-  <div class='options not-logged-in'>
+  <div class='options'>
     <div class='circles one' id='one'></div>
     <div class='circles two' id='two'></div>
     <div class='circles three' id='three'></div>
@@ -137,11 +157,11 @@
 <!-- FORM FOR SIGN UP -->
 <div class='col-sm-4 col-sm-offset-4'>
   <p id='signup'>Sign Up</p>
-  <form class="form" id="new-profile-form">
+  <form class='form' id='new-profile-form'>
     <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
     <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
     <br>
-    <button type="submit" class="btn btn-primary center-block">Create</button>
+    <button type='submit' class='btn btn-primary center-block'>Create</button>
   </form>
 </div>
 <!-- FORM FOR SIGN UP -->
@@ -155,8 +175,8 @@
 
 <!-- LOGIN FORM -->
 <div class='col-sm-2 col-sm-offset-5'>
-  <p id='login'>Log In</p>
   <form class='form' id='form-login'>
+  <p id='login'>Log In</p>
     <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
     <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
     <br>

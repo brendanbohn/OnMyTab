@@ -26,7 +26,6 @@ body {
 	100%{ transform: scale(0);	}
 }
 
-
 /*ANIMATIONS*/
 .grow {
 	-webkit-animation: grow 3s;
@@ -52,19 +51,6 @@ body {
 	display: none;
 }
 /*ANIMATIONS*/
-
-
-
-#logo {
-	margin-top: 100px;
-}
-
-p {
-	color: white;
-	text-align: center;
-	font-size: 30px;
-}
-
 
 /*PHOTO CLASSES*/
 .photo-signup {
@@ -106,8 +92,6 @@ p {
 .photo-nearbys {
 	background-image: url('http://s8.postimg.org/vqrp6afzp/draft_512.png');
 }
-
-
 /*PHOTO CLASSES*/
 
 
@@ -137,18 +121,49 @@ p {
 .background-size-logo {
 	background-size: 250px;
 }
-
 /*BACKGROUND SIZE CLASSES*/
 
 
 
 
 /*LOGGED IN DISPLAY*/
-
 .nearbyBars {
 	color: white;
 	font-size: 20px;
 }
+
+.navbar {
+	background-color: rgb(30,30,30);
+}
+
+#logo {
+	margin-top: 100px;
+}
+
+p {
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+
+#cross-streets {
+	width: 500px;
+	margin-top: 10px;
+	color: grey;
+	text-align: center;
+	font-size: 15px;
+}
+
+#centerbutton {
+	text-align: center;
+	padding-top: 20px;
+}
+
+.navbar-text {
+	color: grey;
+	font-size: 15px;
+}
+
 
 .profilecircle {
 	background-repeat: none;
@@ -177,23 +192,38 @@ p {
 }
 
 #map {
-	height: 500px;
-	width: 500px;
-	border-radius: 250px;
+	height: 400px;
+	width: 400px;
+	border-radius: 200px;
+	margin-top: 50px;
 }
 
 #marker-content {
 	color: black;
 	font-size: 15px;
-}
-
-.infoWindow {
-	background-color: darkblue;
+	text-align: center;
+	padding-left: 15px;
 }
 
 #marker-photos {
 	height: 100px;
 	width: 100px;
+	background-position: center;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	border-radius: 50px;
+}
+
+#centerthis {
+	background-position: center;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+#marker-profile-photo {
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
 	background-position: center;
 }
 
