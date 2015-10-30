@@ -14,6 +14,8 @@ $(document).ready(function(){
 
   	$('#info-panel-head').hide();
 
+  	$('#info-maps-head').hide();
+
   	$('#bar-panel-head').hide();
 
   	$('body').addClass('profile-background');
@@ -59,6 +61,20 @@ $(document).ready(function(){
 	      			google.maps.event.addListener(marker, 'click', (function(marker, i) {
 
 	      				return function() {
+
+	      					if (data[i].is_closed == false) {
+								$('.info-maps-bar').html('<div class="well well-sm"><img src="' + data[i].rating_img_url_large + '"></div><div class="well well-sm">Currently Open</div><div class="well well-sm">Phone: ' + data[i].display_phone + '</div><div class="well well-sm">Review: ' + data[i].snippet_text + '</div');
+							} else {
+								$('.info-maps-bar').html('<div class="well well-sm"><img src="' + data[i].rating_img_url_large + '"></div><div class="well well-sm">Phone: ' + data[i].display_phone + '</div><div class="well well-sm">Review: ' + data[i].snippet_text + '</div');
+							};
+
+							$('#info-maps-head').show();
+
+	      					$('#marker-panel-image').show();
+
+							$('#bar-panel-name').show();
+
+							$('.bar-panel-info').show();
 
 	      					$('#comment-panel-head').show();
 
@@ -239,7 +255,7 @@ $(document).ready(function(){
 
 			$('#bar-location').html(data[0].name);
 
-  			$('#examples').show();
+			$('#examples').show();
 
   		});
 
@@ -295,6 +311,10 @@ $(document).ready(function(){
 
     	$('#back-profile').on('click', function() {
 
+    		$('#back-profile').addClass('fadeOut');
+
+    		$('#info-maps-head').hide();
+
 			$.post('/api/yelp', userBarLocation, function (data) {
 
 				$('.user-comments').html(null);
@@ -306,8 +326,6 @@ $(document).ready(function(){
 				};
 
 				$('#bar-location').html(data[0].name);
-
-				$('#examples').show();
 
 				$('#bar-profile-name').html(data[0].name).hide();
 
@@ -327,6 +345,12 @@ $(document).ready(function(){
 					};
 				};
 			});
+
+			$('#back-profile').one('webkitAnimationEnd', function() {
+				$('#back-profile').hide();
+				$('#options-five').show().removeClass('fadeOut').addClass('fadeIn');
+			});
+
   		});
 
 		$('#marker-panel-image').hide();
@@ -345,15 +369,17 @@ $(document).ready(function(){
 
 			$('#profile').show().removeClass('shrink').addClass('grow');
 		
-			$('#bar-location').show().removeClass('shrink').addClass('grow');
+			$('#examples').show().addClass('grow');
 			
-			$('#map').removeClass('shrink').addClass('hide');
+			$('#map').removeClass('shrink').hide();
 		
 		});
 	});
 
     	// CLICK TO REDIRECT TO GOOGLE MAPS
     	$('#options-five').on('click', function() {
+
+    		$('#options-five').addClass('fadeOut');
 
     		$('#examples').hide();
 
@@ -377,21 +403,27 @@ $(document).ready(function(){
     		$('#profile').one('webkitAnimationEnd', function() {
     			
     			$('#remove-top').addClass('hideForm');
+
+    			$('#map').show().addClass('grow');
     			
     			initMap();
     			
     			getLocations();
     			
     			$('#profile').hide();
-    			
-				$('#map').removeClass('hideForm').addClass('grow');
     		
     		});
+
+    		$('#options-five').one('webkitAnimationEnd', function() {
+    			$('#options-five').hide();
+    			$('#back-profile').show().removeClass('fadeOut').addClass('fadeIn');
+    		});
+
     	});
     	// CLICK TO REDIRECT TO GOOGLE MAPS
     });
 
-
+	$('#back-profile').hide();
 
 	// SUBMIT FORM FOR COMMENTS ON GOOGLE MAPS
 	$('#comment-maps-form').on('submit', function(e) {
@@ -402,7 +434,7 @@ $(document).ready(function(){
 
 		$.post('/api/yelp/comment', comment, function (response) {
 			var newComment = response;
-			$('.comments-of-bar').prepend('<div class="well well-sm">' + newComment.comment + '</div>');
+			$('.comments-of-bar').append('<div class="well well-sm">' + newComment.comment + '</div>');
 			$('#comment-maps-input').focus();
 		});
 	});
@@ -418,10 +450,11 @@ $(document).ready(function(){
 
 		$.post('/api/yelp/comment', comment, function (response) {
 			var newComment = response;
-			$('.user-comments').prepend('<div class="well well-sm">' + newComment.comment + '</div>');
+			$('.user-comments').append('<div class="well well-sm">' + newComment.comment + '</div>');
 			$('#comment-profile-input').focus();
 		});
 	});
+
 
 
 
@@ -450,12 +483,10 @@ $(document).ready(function(){
 	$('#new-profile-form').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
-		console.log(newUser);
-		$('.logged-in').removeClass().show();
-		$('.not-logged-in').hide();
 
 		$.post('/api/users', newUser, function (data) {
 			console.log(data);
+			checkAuth();
 		});
 	});
 	//SUBMIT FORM FOR SIGN UP
@@ -467,7 +498,7 @@ $(document).ready(function(){
 	$('#form-login').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
-		$('.startup').hide();
+		checkAuth();
 
 		$.post('/login', newUser, function (data) {
 			checkAuth();
@@ -483,9 +514,7 @@ $(document).ready(function(){
 	// LOGOUT ON CLICK FUNCTION
 	$('#logout').on('click', function() {
 		$.get('/logout', function (data) {
-			
-
-
+			checkAuth();
 
 			console.log(data.msg);
 		});

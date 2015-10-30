@@ -114,9 +114,7 @@ html, body {
 
 
 /*BACKGROUND SIZE CLASSES*/
-.background-white {
-	background-color: white;
-}
+
 
 .background-size-one {
 	background-size: 30px;
@@ -140,7 +138,19 @@ html, body {
 }
 /*BACKGROUND SIZE CLASSES*/
 
+
 .comments-of-bar {
+	max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#info-scroll {
+	color: white;
+	max-height: 175px;
+    overflow-y: auto;
+}
+.info-maps-bar {
 	max-height: 200px;
     overflow-y: auto;
     margin-bottom: 10px;
@@ -149,6 +159,10 @@ html, body {
 #tabs-bar {
 	max-height: 605px;
 	overflow-y: auto;
+}
+
+.h2 {
+	color: blue;
 }
 
 #profile {
@@ -435,12 +449,30 @@ p {
 	padding-top: 50px;
 }
 
+
 .circles {
 	height: 50px;
 	width: 50px;
 	display: inline-block;
 	position: relative;
 	border-radius: 25px;
+}
+
+.fb-like {
+	margin-left: 375px;
+	margin-top: 10px;
+}
+
+#footone {
+	margin-top: 25px;
+	margin-right: -115px;
+}
+#foottwo {
+	margin-top: 10px;
+}
+#footthree {
+	margin-top: 25px;
+	margin-left: -75px;
 }
 
 .one {
@@ -452,7 +484,6 @@ p {
 }
 
 .two {
-	background-color: white;
 	border: solid white 3px;
 	background-position: center;
 	right: 85px;

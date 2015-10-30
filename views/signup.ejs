@@ -97,9 +97,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Options</a></li>
             <li role="separator" class="divider"></li>
             <li id='logout'><a href="#">Log Out</a></li>
           </ul>
@@ -129,7 +127,16 @@
 <div id='bar-profile-info'></div>
 <!-- PROFILE LOGGED IN SIDE PANEL -->
 
-
+<!-- GOOGLE MAPS INFORMATION PANEL -->
+<div class="panel panel-primary" id='info-maps-head'>
+  <div class="panel-heading">
+    Information <span class='badge'></span>
+  </div>
+  <div class="panel-body">
+    <div class='info-maps-bar'></div>
+  </div>
+</div>
+<!-- GOOGLE MAPS INFORMATION PANEL
 
 <!-- GOOGLE MAPS SIDE PANEL -->
 <div class="panel panel-primary" id='comment-panel-head'>
@@ -137,7 +144,7 @@
     Comments <span class='badge'></span>
   </div>
   <div class="panel-body">
-    <div class='comments-of-bar'></div>
+    <div class='comments-of-bar' id='scroll-bottom'></div>
     <form class='form' id='comment-maps-form'>
       <input name='comment' type='text' class='form-control center-block' id='comment-maps-input' placeholder='Comment: '>
       <input name='bar' type='text' class='form-control center-block hidden' id='bar-maps-input'>
@@ -146,7 +153,6 @@
   </div>
 </div>
 <!-- GOOGLE MAPS SIDE PANEL -->
-
 
 
 
@@ -172,7 +178,7 @@
     User Comments <span class='badge'></span>
   </div>
   <div class="panel-body">
-    <div class='user-comments'></div>
+    <div class='user-comments' id='scroll-to-bottom'></div>
     <form class='form' id='comment-profile-form'>
     <input name='comment' type='text' class='form-control center-block' id='comment-profile-input' placeholder='Comment: '>
     <input name='bar' type='text' class='form-control center-block hidden' id='bar-profile-input'>
@@ -217,11 +223,12 @@
 
 
 <!-- FORM FOR SIGN UP BEGIN -->
-<div class='col-sm-4 col-sm-offset-4'>
+<div class='col-sm-2 col-sm-offset-5'>
   <p id='signup'>Sign Up</p>
   <form class='form' id='new-profile-form'>
     <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
-    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
+    <br>
+    <input name='password' type='password' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
     <br>
     <button type='submit' class='btn btn-primary center-block'>Create</button>
   </form>
@@ -234,7 +241,26 @@
 <!-- INFORMATION ABOUT APP BEGIN -->
 <div class='col-sm-4 col-sm-offset-4' id='info'>
   <p>Information</p>
-  <span>ASDASdasdASDASDASDASDASD</span>
+  <div id='info-scroll'>Nam eu efficiantur voluptatibus, sed te alii vivendo, in cum minim vituperatoribus. Cu mea amet diam, nec an dicit audiam repudiandae. An alii similique cum, accusam delicata facilisis id has. No habeo theophrastus mea, per in tale cibo maiestatis. Atqui putant legimus mea eu, dolorum appareat oportere ad per, tollit omnesque percipit ex vim. Consequat deseruisse his at.
+<br><br>
+Vis et tale habeo liber, augue saepe fuisset ius id, mea in tation facete. Senserit constituam scriptorem mei ut, sit commune reformidans theophrastus cu. Cu ius vulputate scripserit. Nulla incorrupte vis ei, te vel case choro officiis. Enim oporteat ocurreret per at. Cu justo velit efficiendi nec, ea quando rationibus percipitur eos.
+<br><br>
+At lobortis recteque gubergren ius, ius eripuit aliquam pertinacia in. Facer impetus lucilius id pri, tempor dolorum suscipit id eum. Esse facete fastidii est an. Et consul torquatos adipiscing mei, unum deleniti apeirian ius cu. Has ex hinc consulatu forensibus, cum ullum fastidii et. Alii detraxit quo id, no pri quas illum theophrastus.
+<br><br>
+Nec dicant euismod petentium ex, stet labore concludaturque ne mei, an mea sale simul constituam. Mei ut exerci detracto lucilius, te dolore neglegentur pro. Vix ea habemus oporteat, commune sapientem sit ad. Ne pro eruditi atomorum.
+
+Regione saperet ius ea, has zril choro clita cu. Habeo facer consetetur id vix. Numquam placerat consetetur eos eu, ad ius labores incorrupte. Ut mollis inciderint eos, vide volutpat nec et.
+
+Paulo deseruisse te mel, tation persius explicari ei pri. Nam cu erant utamur, nam prima prompta volumus ex. Nec albucius moderatius ne. Ut mel eirmod inciderint. Per utinam accumsan similique in.
+<br><br>
+Nostrud qualisque comprehensam ea sed. Nec unum minim senserit ad, in iudicabit accommodare est, eam cu augue movet adipisci. Eum simul impetus ad, in erant invidunt vis, legimus corrumpit at nam. Eum ea congue adolescens, ea erat aeque disputationi sed, splendide mnesarchum ut est. At eam voluptua omittantur, te ius vitae probatus.
+
+Mel nostrud iracundia ne, eum aeque graece ex. Mea ex dico libris sapientem, in vix sint altera corpora, ut vis maiestatis intellegam. Dicant offendit in usu, appareat delicatissimi vix ad. Cu mel verear impetus.
+<br><br>
+Omnis accusata sed ad. Cu his hinc dicat fabulas. Atomorum rationibus ad vis, eu quaestio constituto ius, eam duis feugiat interpretaris ea. Ad sit harum graeci.
+
+No soleat dictas pro. Nam persius expetendis vituperata ea, ea persius bonorum inimicus usu, eos esse rebum aliquam an. Veniam omittam instructior in sit, at duo omnes iudicabit, quo ex oratio homero explicari. Alia saepe ius ut, et vis vivendo tractatos. Quod augue erroribus ex nam, per ut ipsum timeam dissentiet. Eu has aperiri oblique fierent, vide splendide ad per, cum id inimicus dignissim splendide.
+      </div>
 </div>
 <!-- INFORMATION ABOUT APP END -->
 
@@ -246,7 +272,8 @@
   <form class='form' id='form-login'>
   <p id='login'>Log In</p>
     <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
-    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
+    <br>
+    <input name='password' type='password' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
     <br>
     <button type='submit' id='submit-login' class='btn btn-primary center-block'>Log In</button>
     </form>
@@ -329,12 +356,25 @@
 
     ga('create', 'UA-37765307-2', 'kellyking.me');
     ga('send', 'pageview');
-
   </script>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- SCRIPT FOR SIMON SAYS GAME -->
 
 <footer class='col-sm-12 navbar-fixed-bottom'>
 
+<div class='col-sm-2' id='foot'></div>
+<div class='col-sm-2' id='footone'>On My Tab</div>
+<div class='col-sm-2' id='foottwo'><img height='50' width='50' src='//imgur.com/fLaCFwU.png'></div>
+<div class='col-sm-2' id='footthree'>Created By Isom Durm</div>
+<div class="col-sm-2 fb-like" data-href="https://on-my-tab.herokuapp.com/" data-layout="standard" data-colorscheme='dark' data-action="like" data-show-faces="true" data-share="true"></div>
 </footer>
 
 

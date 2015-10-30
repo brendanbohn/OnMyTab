@@ -76,7 +76,7 @@ app.post('/api/users', function (req, res) {
     req.session.user = user;
     res.cookie('userId', user._id);
     res.json({ user: user, msg: 'User logged in successfully'});
-  })
+  });
 });
 
 // USER DATABASE RENDER
