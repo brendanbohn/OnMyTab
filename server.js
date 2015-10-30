@@ -94,7 +94,20 @@ app.post('/api/yelp', function (req, res) {
   });
 });
 
+// YELP API COMMENTS
+app.post('/api/yelp/comment', function (req, res) {
+  var newComment = req.body;
+  db.Comment.create(newComment, function (err, comment) {
+    res.json(comment);
+  });
+});
 
+// RENDER YELP API COMMENTS
+app.get('/api/yelp/comment', function (req, res) {
+  db.Comment.find(function (err, Comment) {
+    res.send(Comment);
+  });
+});
 
 app.listen(process.env.PORT || 3000);
 

@@ -1,11 +1,6 @@
 
 $(document).ready(function(){
 
-
-
-
-
-
 	// GET USER LOCATION && APPEND NEARBYS
 	if (navigator.geolocation) {
     	console.log('Geolocation is supported!');
@@ -13,17 +8,30 @@ $(document).ready(function(){
     	console.log('Geolocation is not supported for this Browser/OS version yet.');
   	};
 
-  	navigator.geolocation.watchPosition(function(position) {
+  	$('#comment-panel-head').hide();
+
+  	$('#user-panel-head').hide();
+
+  	$('#info-panel-head').hide();
+
+  	$('#bar-panel-head').hide();
+
+  	$('body').addClass('profile-background');
+
+  	navigator.geolocation.getCurrentPosition(function(position) {
+
+  		$('.user-comments').html(null);
 
     	var lat = position.coords.latitude;
     	var lon = position.coords.longitude;
     	console.log(lat, lon);
-    	var swlat = lat + 0.01;
-    	var swlon = lon + 0.01;
-    	var nelat = lat - 0.01;
-    	var nelon = lon - 0.01;
+    	var swlat = lat + 0.005;
+    	var swlon = lon + 0.005;
+    	var nelat = lat - 0.005;
+    	var nelon = lon - 0.005;
 
     	function getLocations() {
+
 	      	$.post('/api/yelp', userBarOptions, function (data) {
 
 	      		var marker, i;
@@ -31,10 +39,8 @@ $(document).ready(function(){
 
 	      		for (var i=0; i < data.length; i++) {
 
-	      			// var infowindow = new google.maps.InfoWindow();
-
 	      			 var icon = {
-		    			url: 'http://s11.postimg.org/t2zmfzvj7/marker_icon.png', // url
+		    			url: '//s11.postimg.org/t2zmfzvj7/marker_icon.png', // url
 		    			scaledSize: new google.maps.Size(50, 50), // scaled size
 		    			origin: new google.maps.Point(0,0), // origin
 		    			anchor: new google.maps.Point(25, 0) // anchor
@@ -54,15 +60,49 @@ $(document).ready(function(){
 
 	      				return function() {
 
-	      					$('#bar-click').html(data[i].name).show();
+	      					$('#comment-panel-head').show();
 
-	      					$('#cross-streets').html(data[i].location.cross_streets);
+	      					$('#bar-panel-head').show();
+
+	      					$('#bar-panel-name').html(data[i].name);
+
+	      					$('#bar-maps-input').val(null);
+
+	      					$('#bar-maps-input').val( data[i].name );
+
+	      					$('.comments-of-bar').html(null);
+
+	      					markerComment = data[i].name;
+
+	      					$.get('/api/yelp/comment', function (taco) {
+								for (var i=0; i<taco.length; i++) {
+									console.log(markerComment);
+									if (taco[i].bar == markerComment) {
+										$('.comments-of-bar').prepend('<div class="well well-sm">' + taco[i].comment + '</div>');
+									};
+									// } else if (taco[i].bar != markerComment) {
+									// };
+								};
+							});
+
+
+	      					var barDeal = data[i].deals;
+
+
+	      					if (!barDeal) {
+	      						$('.bar-panel-info').html(data[i].location.cross_streets);
+	      					} else if (barDeal) {
+	      						barDeal = data[i].deals[i];
+	      						$('.bar-panel-info').html('<div class="well well-sm">' + data[i].location.cross_streets + '</div>' + '<div class="well well-sm">' + barDeal.options[i].purchase_url + '</div>' + '<div class="well well-sm">' + barDeal.title + '</div>')
+	      					};
 
 	      					var barName = data[i].image_url;
 
 	      					if (!barName) {
 	      						barName = data[i].snippet_image_url;
 	      					};
+
+	      					$('#marker-panel-image').html('<img id="image-tab" class="center-block" src="' + barName + '">');
 
 	      					var infoBubble = new InfoBubble({
 		  						content: '<div class="center-block" id="centerthis"><img id="marker-profile-photo" src="' + barName + '"></div>',
@@ -80,13 +120,15 @@ $(document).ready(function(){
     							infoBubble.open(map, marker);
     							setTimeout(moveMapMarker, 100);
 								setTimeout(moveMap, 300);
+								$('#bar-click').html(data[i].name).show();
 							}
-
   						}
 
 					})(marker, i));
 
 	      		};
+
+
 
 	      		function moveMap() {
 					map.panBy(0, -80);
@@ -121,14 +163,14 @@ $(document).ready(function(){
 
 
             var icon = {
-    			url: 'http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png', // url
+    			url: '//www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png', // url
     			scaledSize: new google.maps.Size(40, 40), // scaled size
     			origin: new google.maps.Point(0,0), // origin
     			anchor: new google.maps.Point(20, 0) // anchor
 			};
 
 
-			var profilePhoto = 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg';
+			var profilePhoto = '//media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg';
 
   			var marker = new google.maps.Marker({
     			position: {lat: position.coords.latitude, lng: position.coords.longitude },
@@ -143,7 +185,7 @@ $(document).ready(function(){
   				minHeight: 105,
   				shadowStyle: 1,
   				backgroundColor: 'rgb(57,57,57)',
-  				borderRadius: 52.5,
+  				borderRadius: 75,
   				borderWidth: 1,
   				borderColor: '#2c2c2c',
   				arrowStyle: 0
@@ -185,24 +227,206 @@ $(document).ready(function(){
     	var userBarLocation = {term: 'gay+bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon };
     	var userBarOptions = {term: 'gay+bar', bounds: swlat + ',' + swlon + '|' + nelat + ',' + nelon, limit: '10'};
 
-    	$.post('/api/yelp', userBarLocation, function (data) {
-    		$('#bar-location').html(data[0].name);
-    	});
 
-    	$('.options-five').on('click', function() {
+
+
+
+
+    	// POST FUNCTION TO PUSH YELP DATA TO PROFILE PAGE
+ 
+  		// POST FUNCTION TO PUSH YELP DATA TO PROFILE PAGE
+		$.post('/api/yelp', userBarLocation, function (data) {
+
+			$('#bar-location').html(data[0].name);
+
+  			$('#examples').show();
+
+  		});
+
+
+
+
+  		// CLICK ON PROFILE CURRENT LOCATION
+  		$('#bar-location').on('click', function() {
+
+  			$.post('/api/yelp', userBarLocation, function (data) {
+
+  				$('.user-comments').html(null);
+
+				if (data[0].is_closed == false) {
+					$('.info-of-bar').html('<div class="well well-sm"><img src="' + data[0].rating_img_url_large + '"></div><div class="well well-sm">Currently Open</div><div class="well well-sm">Phone: ' + data[0].display_phone + '</div><div class="well well-sm">Review: ' + data[0].snippet_text + '</div');
+				} else {
+					$('.info-of-bar').html('<div class="well well-sm"><img src="' + data[0].rating_img_url_large + '"></div><div class="well well-sm">Phone: ' + data[0].display_phone + '</div><div class="well well-sm">Review: ' + data[0].snippet_text + '</div');
+				};
+
+				$('#bar-profile-name').html(data[0].name);
+
+				$('#profile-panel-image').html('<img id="image-tab" class="center-block" src="' + data[0].image_url + '">');
+
+				$('#bar-profile-input').val( data[0].name );
+
+				$('#bar-profile-info').html(data[0].location.cross_streets);
+
+				$('#bar-well').prepend('<div id="bar-well-center"><img class="center-block" id="bar-well-photo" src="' + data[0].image_url + '">');
+
+				$.get('/api/yelp/comment', function (taco) {
+
+					for (var i=0; i<taco.length; i++) {
+						if (taco[i].bar == data[0].name) {
+							$('.user-comments').prepend('<div class="well well-sm">' + taco[i].comment + '</div>');
+						};
+					};
+				});
+			});
+
+  			$('#info-panel-head').show();
+
+			$('#user-panel-head').show();
+
+			$('#profile-panel-image').show();
+
+			$('#bar-profile-name').show();
+
+			$('#bar-profile-info').show();
+
+    	});
+    	// CLICK ON PROFILE CURRENT LOCATION
+
+
+    	$('#back-profile').on('click', function() {
+
+			$.post('/api/yelp', userBarLocation, function (data) {
+
+				$('.user-comments').html(null);
+
+				if (data[0].is_closed == false) {
+					$('.info-of-bar').html('<div class="well well-sm"><img src="' + data[0].rating_img_url_large + '"></div><div class="well well-sm">Currently Open</div><div class="well well-sm">Phone: ' + data[0].display_phone + '</div><div class="well well-sm">Review: ' + data[0].snippet_text + '</div');
+				} else {
+					$('.info-of-bar').html('<div class="well well-sm"><img src="' + data[0].rating_img_url_large + '"></div><div class="well well-sm">Phone: ' + data[0].display_phone + '</div><div class="well well-sm">Review: ' + data[0].snippet_text + '</div');
+				};
+
+				$('#bar-location').html(data[0].name);
+
+				$('#examples').show();
+
+				$('#bar-profile-name').html(data[0].name).hide();
+
+				$('#profile-panel-image').html('<img id="image-tab" class="center-block" src="' + data[0].image_url + '">').hide();
+
+				$('#bar-profile-input').val( data[0].name );
+
+				$('#bar-profile-info').html(data[0].location.cross_streets).hide();
+
+				$('#bar-well').prepend('<div id="bar-well-center"><img class="center-block" id="bar-well-photo" src="' + data[0].image_url + '">');
+
+				$.get('/api/yelp/comment', function (taco) {
+
+				for (var i=0; i<taco.length; i++) {
+					if (taco[i].bar == data[0].name) {
+						$('.user-comments').prepend('<div class="well well-sm">' + taco[i].comment + '</div>');
+					};
+				};
+			});
+  		});
+
+		$('#marker-panel-image').hide();
+
+		$('#bar-panel-name').hide();
+
+		$('.bar-panel-info').hide();
+
+		$('#comment-panel-head').hide();
+
+    	$('body').addClass('profile-background');
+
+		$('#map').addClass('shrink');
+		
+		$('#map').one('webkitAnimationEnd', function() {
+
+			$('#profile').show().removeClass('shrink').addClass('grow');
+		
+			$('#bar-location').show().removeClass('shrink').addClass('grow');
+			
+			$('#map').removeClass('shrink').addClass('hide');
+		
+		});
+	});
+
+    	// CLICK TO REDIRECT TO GOOGLE MAPS
+    	$('#options-five').on('click', function() {
+
+    		$('#examples').hide();
+
+    		$('.user-comments').html(null);
+
+    		$('#info-panel-head').hide();
+
+    		$('body').removeClass('profile-background');
+
+    		$('#user-panel-head').hide();
+
+    		$('#profile-panel-image').hide();
+
+    		$('#bar-profile-name').hide();
+
+    		$('#bar-profile-info').hide();
+    		
     		$('#profile').addClass('shrink');
-    		$('#bar-location').addClass('shrink');
+    		
+    		
     		$('#profile').one('webkitAnimationEnd', function() {
-    			$('#bar-location').addClass('hideForm');
+    			
+    			$('#remove-top').addClass('hideForm');
+    			
     			initMap();
+    			
     			getLocations();
+    			
     			$('#profile').hide();
-    			$('#map').removeClass('hideForm').addClass('grow');
+    			
+				$('#map').removeClass('hideForm').addClass('grow');
+    		
     		});
     	});
-
+    	// CLICK TO REDIRECT TO GOOGLE MAPS
     });
-	// GET USER LOCATION && APPEND NEARBYS
+
+
+
+	// SUBMIT FORM FOR COMMENTS ON GOOGLE MAPS
+	$('#comment-maps-form').on('submit', function(e) {
+
+		e.preventDefault();
+
+		var comment = $(this).serialize();
+
+		$.post('/api/yelp/comment', comment, function (response) {
+			var newComment = response;
+			$('.comments-of-bar').prepend('<div class="well well-sm">' + newComment.comment + '</div>');
+			$('#comment-maps-input').focus();
+		});
+	});
+	// SUBMIT FORM FOR COMMENTS ON GOOGLE MAPS
+
+
+
+	$('#comment-profile-form').on('submit', function(e) {
+
+		e.preventDefault();
+
+		var comment = $(this).serialize();
+
+		$.post('/api/yelp/comment', comment, function (response) {
+			var newComment = response;
+			$('.user-comments').prepend('<div class="well well-sm">' + newComment.comment + '</div>');
+			$('#comment-profile-input').focus();
+		});
+	});
+
+
+
+
+
 
 	// CHECK COOKIES IF LOGGED IN
 	function checkAuth() {
@@ -210,18 +434,17 @@ $(document).ready(function(){
 			if (data.user || data.cookie) {
 				$('.not-logged-in').hide();
 				$('.logged-in').show();
+				$('#tabs-bar').show();
 			} else {
 				$('.not-logged-in').show();
 				$('.logged-in').hide();
+				$('#tabs-bar').hide();
 			};
 		});
 	};
+	// CHECK FUNCTION IF LOGGED IN
 
 	checkAuth();
-	// CHECK COOKIES IF LOGGED IN
-
-
-	$('#bar-click').addClass('hideForm');
 
 	// SUBMIT FORM FOR SIGN UP
 	$('#new-profile-form').on('submit', function(e) {
@@ -229,6 +452,7 @@ $(document).ready(function(){
 		var newUser = $(this).serialize();
 		console.log(newUser);
 		$('.logged-in').removeClass().show();
+		$('.not-logged-in').hide();
 
 		$.post('/api/users', newUser, function (data) {
 			console.log(data);
@@ -239,17 +463,17 @@ $(document).ready(function(){
 
 
 
-	// SUBMIT FORM FOR LOG IN
+	// SUBMIT FORM FOR LOG IN ON START PAGE
 	$('#form-login').on('submit', function(e) {
 		e.preventDefault();
 		var newUser = $(this).serialize();
+		$('.startup').hide();
 
 		$.post('/login', newUser, function (data) {
 			checkAuth();
 		});
 	});
-	// SUBMIT FORM FOR LOG IN
-
+	// SUBMIT FORM FOR LOG IN ON START PAGE
 
 
 
@@ -259,17 +483,10 @@ $(document).ready(function(){
 	// LOGOUT ON CLICK FUNCTION
 	$('#logout').on('click', function() {
 		$.get('/logout', function (data) {
-			$('#profile').addClass('shrink');
-			$('#profile').one('webkitAnimationEnd', function() {
-				$('#profile').hide();
-				$('.logged-in').addClass('hideForm');
-				$('#map').hide();
-				$('.not-logged-in').show().addClass('grow');
-			});
-			$('#bar-location').addClass('fadeOut');
-			$('#bar-location').one('webkitAnimationEnd', function() {
-				$('#bar-location').hide();
-			});
+			
+
+
+
 			console.log(data.msg);
 		});
 	});
@@ -282,6 +499,13 @@ $(document).ready(function(){
 
 
 // LOGGED IN DISPLAY
+
+	$('#bar-click').addClass('hideForm');
+
+	$('#examples').hide();
+
+	$('#tab-image').addClass('photo-user');
+
 	$('.options-one').addClass('photo-messages');
 
 	$('.options-two').addClass('photo-settings');
@@ -296,16 +520,6 @@ $(document).ready(function(){
 
 	$('#map').addClass('hideForm');
 
-
-
-	$('#users').on('click', function() {
-		$('#profile').removeClass('photo-user').addClass('photo-users');
-		$('.profile-options').addClass('shrink');
-		$('.profile-options').one('webkitAnimationEnd', function() {
-			$('.profile-options').removeClass('shrink').addClass('hideForm');
-		})
-
-	})
 
 
 

@@ -5,3 +5,4 @@ mongoose.connect(
   'mongodb://localhost/OnMyTab' // plug in the db name you've been using
 );
 module.exports.User = require("./user.js");
+module.exports.Comment = require("./comment.js");

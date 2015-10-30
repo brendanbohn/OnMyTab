@@ -1,10 +1,26 @@
-body {
-	background-color: rgb(30,30,30)
+html, body {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 1200px;
+	height: 100%;
+	margin-bottom: 0px;
+	background-color: rgb(30,30,30);
+}
+
+.profile-background {
+	background-image: url('//img0.etsystatic.com/000/0/6228198/il_340x270.230898938.jpg');
 }
 
 @-webkit-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+.map-container:before, .map-container:after, .map:before, .map:after {
+    content: '';
+    position: absolute;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
 @-webkit-keyframes fadeout {
@@ -52,45 +68,46 @@ body {
 }
 /*ANIMATIONS*/
 
+
 /*PHOTO CLASSES*/
 .photo-signup {
-	background-image: url('http://wcdn3.dataknet.com/static/resources/icons/set32/21fbd649.png');
+	background-image: url('//wcdn3.dataknet.com/static/resources/icons/set32/21fbd649.png');
 }
 
 .photo-info {
-	background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png");
+	background-image: url("//upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/1024px-Infobox_info_icon.svg.png");
 }
 
 .photo-login {
-	background-image: url('https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/login.png');
+	background-image: url('//cdn2.iconfinder.com/data/icons/windows-8-metro-style/128/login.png');
 }
 
 .photo-logo {
-	background-image: url('http://imgur.com/fLaCFwU.png');
+	background-image: url('//imgur.com/fLaCFwU.png');
 }
 
 .photo-messages {
-	background-image: url('http://icons.iconarchive.com/icons/xenatt/the-circle/256/App-Messages-icon.png');
+	background-image: url('//icons.iconarchive.com/icons/xenatt/the-circle/256/App-Messages-icon.png');
 }
  
 .photo-settings {
-	background-image: url('http://www.anz.com/resources/5/1/51effbe1-70cb-4203-b8f2-c1555c306d46/4/settings.png?MOD=AJPERES&CACHEID=51effbe1-70cb-4203-b8f2-c1555c306d46/4');
+	background-image: url('//www.anz.com/resources/5/1/51effbe1-70cb-4203-b8f2-c1555c306d46/4/settings.png?MOD=AJPERES&CACHEID=51effbe1-70cb-4203-b8f2-c1555c306d46/4');
 }
 
 .photo-logout {
-	background-image: url('http://s16.postimg.org/mxe7m0ptx/Head_Profile.png');
+	background-image: url('//s16.postimg.org/mxe7m0ptx/Head_Profile.png');
 }
 
 .photo-user {
-	background-image: url('https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg');
+	background-image: url('//media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg');
 }
 
 .photo-users {
-	background-image: url('https://cdn4.iconfinder.com/data/icons/silky-icon-user/60/users1-512.png');
+	background-image: url('//cdn4.iconfinder.com/data/icons/silky-icon-user/60/users1-512.png');
 }
 
 .photo-nearbys {
-	background-image: url('http://s8.postimg.org/vqrp6afzp/draft_512.png');
+	background-image: url('//s8.postimg.org/vqrp6afzp/draft_512.png');
 }
 /*PHOTO CLASSES*/
 
@@ -123,17 +140,106 @@ body {
 }
 /*BACKGROUND SIZE CLASSES*/
 
+.comments-of-bar {
+	max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#tabs-bar {
+	max-height: 605px;
+	overflow-y: auto;
+}
+
+#profile {
+	box-shadow: 15px 15px 35px 10px black;
+}
+
+#bar-profile-name {
+	text-align: center;
+	font-size: 15px;
+	color: grey;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.user-comments {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+.info-of-bar {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+#comment-maps-button {
+	margin-top: 10px;
+}
 
 
-
+#bar-profile-info {
+	text-align: center;
+	color: grey;
+	font-size: 15px;
+	font-weight: lighter;
+	margin-bottom: 10px;
+}
 /*LOGGED IN DISPLAY*/
+
+#bar-panel-name {
+	text-align: center;
+	color: grey;
+	font-size: 20px;
+}
+
+#comment-profile-button {
+	margin-top: 10px;
+}
+
+.bar-panel-info {
+	text-align: center;
+	color: grey;
+	font-size: 15px;
+	font-weight: lighter;
+	margin-bottom: 10px;
+}
+
+#comment-maps-input {
+	margin-top: 10px;
+}
+
+#panel-head-buttons {
+	margin-top: 15px;
+}
+
+#image-tab {
+	height: 150px;
+	width: 150px;
+	text-align: center;
+	background-position: center;
+	border-radius: 75px;
+}
+
+#marker-panel-image {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
 .nearbyBars {
 	color: white;
 	font-size: 20px;
 }
 
 .navbar {
-	background-color: rgb(30,30,30);
+	background-color: rgb(23,23,23);
+	border-color: rgb(23,23,23);
+}
+
+.navbar-fixed-bottom {
+	background-color: rgb(23,23,23);
+	border-color: rgb(23,23,23);
+	height: 80px;
 }
 
 #logo {
@@ -147,11 +253,61 @@ p {
 }
 
 #cross-streets {
+	margin-bottom: 10px;
+	color: grey;
+	text-align: center;
+	font-size: 15px;
+}
+#bar-well-center {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#tabs-bar {
+	height: 100%;
+	background-color: rgb(25,25,25);
+	margin: 0px;
+}
+
+#remove-top {
+	margin-bottom: 0px;
+}
+
+#navtabswidth {
+	width: 312px;
+}
+
+#buttoncomment {
+	text-align: center;
+}
+
+#commentCollapse {
+	margin-top: 10px;
+}
+
+#bar-well {
+	margin-top: 10px;
+	width: 400px;
+}
+
+#bar-well-photo {
+	text-align: center;
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+}
+
+#example {
 	width: 500px;
 	margin-top: 10px;
 	color: grey;
 	text-align: center;
 	font-size: 15px;
+}
+
+#bar-location {
+	margin-top: 10px;
+	box-shadow: 15px 15px 35px 10px black;
 }
 
 #centerbutton {
@@ -167,34 +323,23 @@ p {
 
 .profilecircle {
 	background-repeat: none;
-	height: 250px;
-	width: 250px;
+	height: 300px;
+	width: 300px;
 	background-position: center;
-	background-size: 250px;
-	border-radius: 125px;
+	background-size: 300px;
+	border-radius: 150px;
 	border: solid 4px white;
 	margin-top: 100px;
 }
 
-.options-one {
-	bottom: 10px;
-	right: 20px;
-	height: 50px;
-	width: 50px;
-	display: inline-block;
-	position: relative;
-	border-radius: 25px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 40px;
-	border: solid white 3px;
-
+#commentMapsCollapse {
+	margin-top: 10px;
 }
 
 #map {
-	height: 400px;
-	width: 400px;
-	border-radius: 200px;
+	height: 500px;
+	width: 500px;
+	border-radius: 250px;
 	margin-top: 50px;
 }
 
@@ -221,15 +366,16 @@ p {
 }
 
 #marker-profile-photo {
-	height: 100px;
-	width: 100px;
-	border-radius: 50px;
+	height: 150px;
+	width: 150px;
+	border-radius: 75px;
 	background-position: center;
+	text-align: center;
 }
 
 .options-two {
 	bottom: 60px;
-	left: 40px;
+	left: 100px;
 	height: 50px;
 	width: 50px;
 	display: inline-block;
@@ -241,24 +387,12 @@ p {
 	border: solid white 3px;
 }
 
+#profile-panel-image {
+	margin-bottom: 10px;
+}
 .options-three {
 	bottom: 10px;
-	left: 105px;
-	height: 50px;
-	width: 50px;
-	display: inline-block;
-	position: relative;
-	border-radius: 25px;
-	background-size: 40px;
-	background-position: center;
-	background-repeat: no-repeat;
-	border: solid white 3px;
-
-}
-
-.options-four {
-	top: 100px;
-	left: 90px;
+	left: 160px;
 	height: 50px;
 	width: 50px;
 	display: inline-block;
@@ -273,8 +407,8 @@ p {
 
 
 .options-five {
-	top: 50px;
-	right: 60px;
+	bottom: 15px;
+	right: 125px;
 	height: 50px;
 	width: 50px;
 	display: inline-block;
@@ -287,6 +421,9 @@ p {
 
 }
 
+.logged-in {
+	margin-top: 0;
+}
 /*NOT LOGGED IN DISPLAY*/
 .logocircle {
 	background-repeat: none;
@@ -488,6 +625,10 @@ p[data-action="lose"] {
 
 .hoverable:hover {
 	cursor: pointer;
+}
+
+#examples {
+	text-align: center;
 }
 
 footer {

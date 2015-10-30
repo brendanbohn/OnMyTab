@@ -25,19 +25,253 @@
 </head>
 <body>
 
-<nav class='navbar navbar-default'>
-  <div class='container-fluid'>
-    <div class='navbar-header'>
-      <a class='navbar-brand' href='#'>
-        <img alt='Brand' src='http://s3.postimg.org/e9wql4yn7/brand.png' height='20' width='20'>
-      </a>
-      <p class='navbar-text navbar-right'>On My Tab</p>
+
+
+
+
+
+
+
+
+
+<!-- LOGGED IN DISPLAY BEGIN -->
+<div class='logged-in col-sm-8'>
+
+
+
+<!-- PROFILE CIRCLE BEGIN -->
+<div class='center-block profilecircle' id='profile'><span id='profile-photo'></span></div>
+<!-- PROFILE CIRCLE END -->
+
+
+
+
+<div id='examples'>
+  <button class='btn btn-primary center-block' id='bar-location' type='button'></button>
+</div>
+
+
+<!-- <form class='form' id='comment-form'>
+            <input name='comment' type='text' class='form-control center-block' id='comment-input' placeholder='Comment: '>
+            <input name='bar' type='text' class='form-control center-block hidden' id='bar-input'>
+            <br>
+            <button type='submit' class='btn btn-primary center-block'>Create</button>
+          </form> -->
+
+
+<!-- GOOGLE MAPS BEGIN -->
+<div class='center-block nearbyBars' id='map'></div>
+<!-- GOOGLE MAPS END -->
+
+
+
+
+
+</div>
+<!-- LOGGED IN DISPLAY END -->
+
+
+
+
+<!-- GOOGLE MAPS COMMENTS SIDEBAR BEGIN-->
+<nav class="navbar navbar-inverse col-sm-4" id='tabs-bar'>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img width='20' height='20' src='http://s4.postimg.org/eligxlw5p/Martini_Logo.png'></a>
     </div>
-  </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li id='options-five'><a href="#">Nearby</a></li>
+        <li id='back-profile'><a href="#">Profile</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li id='logout'><a href="#">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
 
-<!-- SIMON SAYS GAME -->
-<div class='col-sm-12 simonsays'>
+
+
+
+
+
+
+<!-- GOOGLE MAPS SIDE PANEL -->
+<div id='marker-panel-image'></div>
+<div id='bar-panel-name'></div>
+<div class='bar-panel-info'></div>
+<!-- GOOGLE MAPS SIDE PANEL -->
+
+
+
+<!-- PROFILE LOGGED IN SIDE PANEL-->
+<div id='profile-panel-image'></div>
+<div id='bar-profile-name'></div>
+<div id='bar-profile-info'></div>
+<!-- PROFILE LOGGED IN SIDE PANEL -->
+
+
+
+<!-- GOOGLE MAPS SIDE PANEL -->
+<div class="panel panel-primary" id='comment-panel-head'>
+  <div class="panel-heading">
+    Comments <span class='badge'></span>
+  </div>
+  <div class="panel-body">
+    <div class='comments-of-bar'></div>
+    <form class='form' id='comment-maps-form'>
+      <input name='comment' type='text' class='form-control center-block' id='comment-maps-input' placeholder='Comment: '>
+      <input name='bar' type='text' class='form-control center-block hidden' id='bar-maps-input'>
+      <button type='submit' class='btn btn-primary center-block' id='comment-maps-button'>Create</button>
+    </form>
+  </div>
+</div>
+<!-- GOOGLE MAPS SIDE PANEL -->
+
+
+
+
+
+<!-- PROFILE  LOGGED IN INFORMATION PANEL -->
+<div class="panel panel-primary" id='info-panel-head'>
+  <div class="panel-heading">
+    Information <span class='badge'></span>
+  </div>
+  <div class="panel-body">
+    <div class='info-of-bar'></div>
+  </div>
+</div>
+<!-- PROFILE LOGGED IN INFORMATION PANEL -->
+
+
+
+
+
+<!-- PROFILE LOGGED IN SIDE PANEL -->
+<div class="panel panel-primary" id='user-panel-head'>
+  <div class="panel-heading">
+    User Comments <span class='badge'></span>
+  </div>
+  <div class="panel-body">
+    <div class='user-comments'></div>
+    <form class='form' id='comment-profile-form'>
+    <input name='comment' type='text' class='form-control center-block' id='comment-profile-input' placeholder='Comment: '>
+    <input name='bar' type='text' class='form-control center-block hidden' id='bar-profile-input'>
+    <button type='submit' class='btn btn-primary center-block' id='comment-profile-button'>Create</button>
+  </form>
+  </div>
+</div>
+
+
+
+
+</nav>
+<!-- GOOGLE MAPS COMMENTS SIDEBAR END -->
+
+
+
+
+
+
+
+<!-- NOT LOGGED IN DISPLAY BEGIN -->
+<div class='not-logged-in'>
+
+
+
+
+<!-- LOGO FOR START UP PAGE BEGIN -->
+<div class='col-sm-8 startup'>
+  <div class='center-block logocircle' id='logo'><span id='logo-photo'></span>
+    <div class='options'>
+      <div class='circles one' id='one'></div>
+      <div class='circles two' id='two'></div>
+      <div class='circles three' id='three'></div>
+    </div>
+  </div>
+  <p id='welcome'>On My Tab</p>
+</div>
+<!-- LOGO FOR START UP PAGE END -->
+
+
+
+
+
+<!-- FORM FOR SIGN UP BEGIN -->
+<div class='col-sm-4 col-sm-offset-4'>
+  <p id='signup'>Sign Up</p>
+  <form class='form' id='new-profile-form'>
+    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
+    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
+    <br>
+    <button type='submit' class='btn btn-primary center-block'>Create</button>
+  </form>
+</div>
+<!-- FORM FOR SIGN UP END -->
+
+
+
+
+<!-- INFORMATION ABOUT APP BEGIN -->
+<div class='col-sm-4 col-sm-offset-4' id='info'>
+  <p>Information</p>
+  <span>ASDASdasdASDASDASDASDASD</span>
+</div>
+<!-- INFORMATION ABOUT APP END -->
+
+
+
+
+<!-- LOGIN FORM BEGIN -->
+<div class='col-sm-2 col-sm-offset-5'>
+  <form class='form' id='form-login'>
+  <p id='login'>Log In</p>
+    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
+    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
+    <br>
+    <button type='submit' id='submit-login' class='btn btn-primary center-block'>Log In</button>
+    </form>
+</div>
+<!-- LOGIN FORM END -->
+
+
+
+
+
+
+
+</div>
+<!-- NOT LOGGED IN DISPLAY END -->
+  
+
+
+
+
+
+
+
+
+<!-- SIMON SAYS GAME BEGIN -->
+<div class='col-sm-8 simonsays'>
   <div class='game-board col-sm-4 col-sm-offset-4'>
     <div class='simon'>
       <ul>
@@ -84,123 +318,7 @@
     <source src='/sounds/ogg/sounds4.ogg' type='audio/ogg'/>
   </audio>
 </div>
-<!-- SIMON SAYS GAME -->
-
-
-
-
-
-
-
-
-<!-- LOGGED IN DISPLAY -->
-<div class='logged-in col-sm-12'>
-
-
-
-<!-- PROFILE CIRCLE -->
-<div class='center-block profilecircle' id='profile'><span id='profile-photo'></span>
-  <div class='logged-in-options'>
-    <div class='options-one' id='messages'></div>
-    <div class='options-two' id='settings'></div>
-    <div class='options-three' id='logout'></div>
-    <div class='options-four' id='users'></div>
-    <div class='options-five' id='nearbys'></div>
-  </div>
-</div>
-
-<!-- <form method='post' enctype='multipart/form-data' action='/api/photo'>
-  <input name='userPhoto' type='file'>
-  <input type='submit'>Upload
-</form> -->
-
-<div class='center-block nearbyBars' id='map'>
-</div>
-<p id='bar-location'></p>
-<!-- <p id='bar-click'></p>
-<p id='cross-streets'></p> -->
-
-
-
-<div id='centerbutton'>
-  <button class='btn btn-primary' id ='bar-click' type='button' data-toggle='collapse' data-target='#collapseExample' aria-expanded='false' aria-controls='collapseExample'>
-  </button>
-  <div class='collapse' id='collapseExample'>
-    <div id='cross-streets' class='well center-block'></div>
-  </div>
-</div>
-<!-- PROFILE CIRCLE -->
-
-</div>
-<!-- LOGGED IN DISPLAY -->
-
-
-<!-- NOT LOGGED IN DISPLAY -->
-<div class='not-logged-in'>
-
-
-
-
-<!-- LOGO FOR START UP PAGE -->
-<div class='col-sm-12 startup'>
-<div class='center-block logocircle' id='logo'><span id='logo-photo'></span>
-  <div class='options'>
-    <div class='circles one' id='one'></div>
-    <div class='circles two' id='two'></div>
-    <div class='circles three' id='three'></div>
-  </div>
-</div>
-<p id='welcome'>On My Tab</p>
-</div>
-<!-- LOGO FOR START UP PAGE -->
-
-<!-- FORM FOR SIGN UP -->
-<div class='col-sm-4 col-sm-offset-4'>
-  <p id='signup'>Sign Up</p>
-  <form class='form' id='new-profile-form'>
-    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
-    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
-    <br>
-    <button type='submit' class='btn btn-primary center-block'>Create</button>
-  </form>
-</div>
-<!-- FORM FOR SIGN UP -->
-
-<!-- INFORMATION ABOUT APP -->
-<div class='col-sm-4 col-sm-offset-4' id='info'>
-  <p>Information</p>
-  <span>ASDASdasdASDASDASDASDASD</span>
-</div>
-<!-- INFORMATION ABOUT APP -->
-
-<!-- LOGIN FORM -->
-<div class='col-sm-2 col-sm-offset-5'>
-  <form class='form' id='form-login'>
-  <p id='login'>Log In</p>
-    <input name='email' type='text' class='form-control center-block' id='profile-email-input' placeholder='Email: '>
-    <input name='password' type='text' class='form-control center-block' id='profile-password-input' placeholder='Password: '>
-    <br>
-    <button type='submit' id='submit-login' class='btn btn-primary center-block'>Log In</button>
-    </form>
-</div>
-<!-- LOGIN FORM -->
-
-
-
-
-
-</div>
-<!-- NOT LOGGED IN DISPLAY -->
-  
-
-
-
-
-
-
-
-
-
+<!-- SIMON SAYS GAME END -->
 
 <!-- SCRIPT FOR SIMON SAYS GAME -->
   <script>
@@ -215,7 +333,9 @@
   </script>
 <!-- SCRIPT FOR SIMON SAYS GAME -->
 
+<footer class='col-sm-12 navbar-fixed-bottom'>
 
+</footer>
 
 
 
