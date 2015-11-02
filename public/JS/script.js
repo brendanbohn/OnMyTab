@@ -10,6 +10,8 @@ $(document).ready(function(){
 
   	$('#comment-panel-head').hide();
 
+  	$('#messages-panel-head').hide();
+
   	$('#user-panel-head').hide();
 
   	$('#info-panel-head').hide();
@@ -77,6 +79,8 @@ $(document).ready(function(){
 							$('.bar-panel-info').show();
 
 	      					$('#comment-panel-head').show();
+
+	      					$('#messages-panel-head').hide();
 
 	      					$('#bar-panel-head').show();
 
@@ -212,8 +216,22 @@ $(document).ready(function(){
 			setTimeout(moveMap, 500);
 
   			google.maps.event.addListener(marker, 'click', function() {
-  				$('#bar-click').html('Isom Durm');
-  				$('#cross-streets').html(null);
+
+  				$.post('/api/yelp', userBarLocation, function (data) {
+
+  					$('#marker-panel-image').html('<img id="image-tab" class="center-block" src="//media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJ4AAAAJGJjZjVhM2FmLTIyZjUtNGE2ZS1iZWYyLWRiNWU1NzNhNDk1Nw.jpg">')
+
+  					$('#info-maps-head').hide();
+
+  					$('#comment-panel-head').hide();
+
+  					$('#bar-panel-name').html('Isom Durm');
+
+  					$('.bar-panel-info').html(data[0].name);
+
+  					$('#messages-panel-head').show();
+  				});
+
   				if (!infoBubble.isOpen()) {
     				infoBubble.open(map, marker);
     				setTimeout(moveMapMarker, 100);
@@ -361,6 +379,8 @@ $(document).ready(function(){
 
 		$('#comment-panel-head').hide();
 
+		$('#messages-panel-head').hide();
+
     	$('body').addClass('profile-background');
 
 		$('#map').addClass('shrink');
@@ -448,10 +468,14 @@ $(document).ready(function(){
 
 		var comment = $(this).serialize();
 
-		$.post('/api/yelp/comment', comment, function (response) {
-			var newComment = response;
-			$('.user-comments').append('<div class="well well-sm">' + newComment.comment + '</div>');
-			$('#comment-profile-input').focus();
+		$.get('/current-user', function (data) {
+			console.log(data);
+
+			$.post('/api/yelp/comment', comment, function (response) {
+				var newComment = response;
+				$('.user-comments').append('<div class="well well-sm">' + newComment.comment + '</div>');
+				$('#comment-profile-input').focus();
+			});
 		});
 	});
 
